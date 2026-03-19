@@ -416,6 +416,7 @@ Storage
 ### Now (v1.0 — MVP)
 | Initiative | Mục tiêu |
 |-----------|---------|
+| Crawl html, css từ URL + Fetch API | Tái tạo nội dung cơ bản |
 | Import SQL + parse WordPress DB | Tái tạo nội dung cơ bản |
 | AI generate React code | 5 theme phổ biến (Divi, Astra, OceanWP...) |
 | Split view: Progress + Preview | UX core loop |
