@@ -257,8 +257,8 @@ User approve preview
 | Push WP source code to Github 1 | LE ANH + VINH | 19/03 | Week 3 | In Progress | Setup repo chuẩn |
 | Test AI Gen Themes from Git + DB access | LE ANH | 20/03 | Week 3 | In Progress | Verify AI đọc được theme |
 | Build Metric evaluate migration performance | VINH | 20/03 | Week 3 | In Progress | Định nghĩa baseline metrics |
-| Case: AI Plan Frontend & Backend | LE ANH | 26/03 | Week 4 | In Progress | Pipeline chart -> Component tree + API plan |
-| Case: Automation sync WP ↔ VP-CASSO ↔ Git | VINH | 26/03 | Week 4 | In Progress | WP→Git1, Git1→VP, VP→Git2, VP->Git1, Git1→WP |
+| Case: AI Plan Frontend & Backend | LE ANH | 26/03 | Week 4 | In Progress | Pipeline chart -> Source code Component tree + API plan |
+| Case: Automation sync WP ↔ VP-CASSO ↔ Git | VINH | 26/03 | Week 4 | In Progress | Pipeline chart -> Source code WP→Git1, Git1→VP, VP→Git2, VP->Git1, Git1→WP |
 | Checkpoint 1 in Week | **All team** | 24/03 | Week 4 | Not Started | Process: VINH show input github 1 (source) -> LANH show and final flow AI plan -> VINH start optimize metric compare migrate -> LANH start to merge (input Git1 + metric to agent) -> (Tool 1 for Agent)|
 | Case: AI Gencode base plan & data | LE ANH | 26/03 | Week 4 | Not Started | Pipeline chart -> React code generation |
 | Optimize input and ouput Metric evaluate migration performance For LANH | VINH | 26/03 | Week 4 | Not Started | Định nghĩa baseline metrics |
