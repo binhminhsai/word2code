@@ -257,13 +257,16 @@ User approve preview
 | Push WP source code to Github 1 | LE ANH + VINH | 19/03 | Week 3 | In Progress | Setup repo chuẩn |
 | Test AI Gen Themes from Git + DB access | LE ANH | 20/03 | Week 3 | In Progress | Verify AI đọc được theme |
 | Build Metric evaluate migration performance | VINH | 20/03 | Week 3 | In Progress | Định nghĩa baseline metrics |
-| Case: Automation sync WP ↔ VP-CASSO ↔ Git | VINH | 26/03 | Week 4 | In Progress | WP→Git1, Git1→VP, VP→Git2, VP->Git1, Git1→WP |
-| Case: Automation CI/CD Git to server | VINH | 26/03 | Week 4 | Not Started | OAuth + clone flow |
 | Case: AI Plan Frontend & Backend | LE ANH | 26/03 | Week 4 | In Progress | Pipeline chart -> Component tree + API plan |
-| Case: AI Gencode base plan & data | LE ANH | 26/03 | Week 4 | In Progress | Pipeline chart -> React code generation |
-| Case: AI Revise Frontend by chat | LE ANH | 26/03 | Week 4 | Not Started | Chat edit loop |
+| Case: Automation sync WP ↔ VP-CASSO ↔ Git | VINH | 26/03 | Week 4 | In Progress | WP→Git1, Git1→VP, VP→Git2, VP->Git1, Git1→WP |
+| Checkpoint 1 in Week | **All team** | 24/03 | Week 4 | Not Started | Process: VINH show input github 1 (source) -> LANH show and final flow AI plan -> VINH start optimize metric compare migrate -> LANH start to merge (input Git1 + metric to agent) -> (Tool 1 for Agent)|
+| Case: AI Gencode base plan & data | LE ANH | 26/03 | Week 4 | Not Started | Pipeline chart -> React code generation |
+| Optimize input and ouput Metric evaluate migration performance For LANH | VINH | 26/03 | Week 4 | Not Started | Định nghĩa baseline metrics |
 | Build Prototype Draft 1 | PM | 26/03 | Week 4 | Not Started | Figma/static prototype |
-| **Merge system & Demo 1** | **All team** | **27/03** | **Week 4** | **Not Started** | **Internal demo** |
+| Checkpoint 2 in Week | **All team** | 26/03 | Week 4 | Not Started | Process: VINH show metric -> LANH merge in pipeline gen code of AI -> Minh show prototype |
+| Case: Automation CI/CD Git to server | VINH | 27/03 | Week 4 | Not Started | OAuth + clone flow |
+| Case: AI Revise Frontend by chat | LE ANH | 27/03 | Week 4 | Not Started | Chat edit loop |
+| **Merge system & Demo 1** | **All team** | **27/03** | *Week 4* | **Not Started** | **Internal demo** |
 
 **Done = Demo 1 chạy được**: Import Github 1 → AI gen vài component → hiển thị preview
 
