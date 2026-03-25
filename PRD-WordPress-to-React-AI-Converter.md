@@ -73,8 +73,167 @@ User / WP Site
 ## 4. Hành trình người dùng (User Journey)
 
 ```
+<<<<<<< Updated upstream
 [Connect Github 1] → [AI Phân tích WP source] → [AI Gen React code]
        → [Preview live] → [Chat Edit UI] → [Export to Github 2] → [Auto Deploy]
+=======
+[Import Codebase] → [Nhập yêu cầu qua Chat] → [AI Code + Preview song song] → [Visual Edit by choose,chat and AI] → [Export/Deploy]
+```
+
+### Bước 1 — Import Codebase
+- User upload file `.sql` dump từ WordPress (hoặc automation workflow access codebase)
+- Hệ thống tự phân tích cấu trúc: posts, pages, themes, menus, media, plugins
+- Hiển thị preview tóm tắt: "Tìm thấy 47 bài viết, 12 trang tĩnh, 3 menu"
+
+### Bước 2 — Chat với AI
+- Giao diện chat đơn giản, user mô tả yêu cầu (ngôn ngữ tự nhiên)
+- Ví dụ: "Chuyển sang React, giữ nguyên giao diện, dùng màu xanh navy"
+- Hỗ trợ cả tiếng Việt và tiếng Anh
+
+### Bước 3 — AI Code + Preview song song
+- Màn hình chia đôi:
+  - **Trái**: Panel AI với log tiến trình coding theo từng bước
+  - **Phải**: Preview panel — ban đầu là skeleton loader, sau đó render live khi code xong
+- User thấy AI "đang làm việc" theo thời gian thực
+
+### Bước 4 — Visual Edit
+- Sau khi preview sẵn sàng, user hover chuột lên bất kỳ element nào
+- Xuất hiện nút chỉnh sửa (icon bút/edit) ngay tại vị trí đó
+- Click vào → mở panel chat chỉ nói về element đó
+- User typing requirement in chat 
+- AI code and sửa đúng component tương ứng, không ảnh hưởng phần còn lại
+
+### Bước 5 — Export/Deploy
+- Download toàn bộ React project dưới dạng .zip
+- Hoặc deploy thẳng lên Vercel/Netlify trong 1 click
+
+---
+
+## 4. Tính năng chi tiết (Feature Specifications)
+
+### 4.1 Import Module
+
+#### F-01: WordPress Database Import
+**Mô tả**: Nhận và phân tích WordPress database dump
+
+**Acceptance Criteria** (Gherkin):
+```gherkin
+Given user đã có file .sql từ WordPress
+When user kéo thả file vào drop zone hoặc click upload or automation access and pull codebase
+Then hệ thống validate file: phát hiện bảng wp_posts, wp_options, wp_users
+And hiển thị summary card: số posts, pages, media attachments, active theme
+And enable nút "Bắt đầu chuyển đổi"
+
+Given file upload không phải WordPress database
+When hệ thống phân tích
+Then hiển thị error message rõ ràng: "Không phát hiện cấu trúc WordPress. Vui lòng kiểm tra lại."
+```
+
+**Dữ liệu được trích xuất**:
+- `wp_posts`: Bài viết, trang, menus, media
+- `wp_options`: Theme settings, site title, description, permalinks
+- `wp_postmeta`: Custom fields, featured images
+- `wp_terms` + `wp_term_taxonomy`: Categories, tags
+- `wp_users`: Author info
+- CSS/theme files được reference trong DB
+
+---
+
+#### F-02: Theme Detection & Analysis
+**Mô tả**: AI đọc active theme, phân tích layout structure
+
+**Logic**:
+1. Đọc `wp_options` → `template` và `stylesheet` → biết tên theme
+2. Tra cứu theme structure từ database metadata
+3. Parse PHP template hierarchy (header.php, footer.php, page.php, single.php)
+4. Trích xuất CSS variables, color palette, typography
+5. Map sang React component structure
+
+---
+
+### 4.2 Chat Interface
+
+#### F-03: AI Chat Panel
+**Mô tả**: Giao diện chat để user ra lệnh
+
+**Yêu cầu UI**:
+```
+┌─────────────────────────────┐
+│  📎 database.sql  ✓ Đã load │
+├─────────────────────────────┤
+│                             │
+│  [Lịch sử chat]             │
+│                             │
+├─────────────────────────────┤
+│  ✏️ Nhập yêu cầu...    [↵] │
+└─────────────────────────────┘
+```
+
+**Acceptance Criteria**:
+```gherkin
+Given database đã được import thành công
+When user gõ lệnh và nhấn Enter
+Then AI phân tích yêu cầu và bắt đầu generate code
+And giao diện chuyển sang màn hình Split View (F-04)
+And chat history vẫn hiển thị ở panel trái
+```
+
+**Các lệnh được hỗ trợ (ví dụ)**:
+- "Chuyển toàn bộ sang React, giữ nguyên giao diện"
+- "Đổi font sang Inter, màu primary sang #2563EB"
+- "Thêm dark mode"
+- "Tối ưu mobile responsive cho trang chủ"
+
+---
+
+### 4.3 Split View — AI Code + Preview
+
+#### F-04: Split View Layout
+**Mô tả**: Màn hình chia đôi hiển thị quá trình AI code và preview
+
+**Layout**:
+```
+┌────────────────────┬────────────────────┐
+│  AI Progress Panel │   Preview Panel    │
+│                    │                    │
+│  ✓ Phân tích DB   │  [Skeleton loader] │
+│  ✓ Tạo components │                    │
+│  ⏳ Build routes  │  → Live preview    │
+│  ○ Optimize CSS   │     khi xong       │
+│                    │                    │
+│  [Log detail...]  │                    │
+└────────────────────┴────────────────────┘
+```
+
+#### F-05: AI Progress Panel (Trái)
+**Mô tả**: Hiển thị tiến trình AI coding theo thời gian thực
+
+**Các bước tiến trình**:
+1. 🔍 Phân tích cấu trúc database
+2. 🎨 Tái tạo theme và design system
+3. 📄 Tạo các React components (Header, Footer, Hero, Card...)
+4. 🔗 Build routing và navigation
+5. 📝 Import toàn bộ nội dung (posts, pages)
+6. 🖼️ Xử lý media và hình ảnh
+7. ✅ Hoàn tất — Preview sẵn sàng
+
+**Hiển thị**:
+- Progress bar tổng thể
+- Từng bước có icon trạng thái: ✓ (xong), ⏳ (đang xử lý), ○ (chưa bắt đầu)
+- Code snippet nhỏ hiển thị live khi từng file được tạo (kiểu terminal typing effect)
+- Thời gian ước tính còn lại
+
+**Acceptance Criteria**:
+```gherkin
+Given AI đang generate code
+When một component được tạo xong
+Then panel trái cập nhật real-time: hiển thị tên file và số dòng code
+And progress bar tăng tương ứng
+
+Given toàn bộ code đã được generate
+When preview panel render xong
+Then hiển thị toast: "Preview sẵn sàng! Click vào bất kỳ phần nào để chỉnh sửa"
+>>>>>>> Stashed changes
 ```
 
 ---
@@ -176,7 +335,17 @@ User chỉnh sửa React code qua Vibepress chat
 - **Property panel**: Quick-edit CSS thông dụng (font, color, spacing, border)
 - **Preview refresh**: Tự động cập nhật sau khi AI sửa xong (< 5 giây)
 
+<<<<<<< Updated upstream
 ---
+=======
+**UX Flow**:
+1. User bật chế độ "Edit Mode" (toggle button ở thanh toolbar)
+2. Hover chuột lên bất kỳ element nào → element bị highlight với border xanh
+3. Tooltip nhỏ hiển thị tên component: "CardContent", "HeroSection", v.v.
+4. Click vào element → mở panel chat sidebar, có sẵn context: "Đang chỉnh sửa: CardContent"
+5. User gõ yêu cầu, AI start plan, coding chỉ sửa đúng component đó
+6. Preview tự động refresh component vừa được sửa
+>>>>>>> Stashed changes
 
 ### 5.5 Metrics — Evaluate Migration Performance
 
