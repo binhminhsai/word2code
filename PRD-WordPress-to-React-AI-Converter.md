@@ -74,9 +74,12 @@ User / WP Site
 
 ```
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [Connect Github 1] → [AI Phân tích WP source] → [AI Gen React code]
        → [Preview live] → [Chat Edit UI] → [Export to Github 2] → [Auto Deploy]
 =======
+=======
+>>>>>>> Stashed changes
 [Import Codebase] → [Nhập yêu cầu qua Chat] → [AI Code + Preview song song] → [Visual Edit by choose,chat and AI] → [Export/Deploy]
 ```
 
