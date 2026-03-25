@@ -83,14 +83,16 @@ User / WP Site
 [Import Codebase] → [Nhập yêu cầu qua Chat] → [AI Code + Preview song song] → [Visual Edit by choose,chat and AI] → [Export/Deploy]
 ```
 
-### Bước 1 — Import Codebase
-- User upload file `.sql` dump từ WordPress (hoặc automation workflow access codebase)
-- Hệ thống tự phân tích cấu trúc: posts, pages, themes, menus, media, plugins
-- Hiển thị preview tóm tắt: "Tìm thấy 47 bài viết, 12 trang tĩnh, 3 menu"
+### Bước 1 — Cài đặt plugin của X-press cung cấp vào Wordpress của mình
+- User upload file zip hoặc cài plugin X-press Vibecode để automation workflow access and push "codebase, database infomation to github"
+- User đăng nhập tài khoản google để login plugin và cấp quyền truy cập cho plugin
+- Hệ thống tự tạo "github 1" cho dự án và đấy toàn bộ source code Wordpress lên đó (gồm codebase để AI Migrate Frontend, database information để call dữ liệu)
 
-### Bước 2 — Chat với AI
-- Giao diện chat đơn giản, user mô tả yêu cầu (ngôn ngữ tự nhiên)
-- Ví dụ: "Chuyển sang React, giữ nguyên giao diện, dùng màu xanh navy"
+### Bước 2 — Chat với X-press
+#### Mục đích user vào Web X-press là để sửa component đang có ở Wordpress thành một dạng khác bằng AI chat thay vì sửa trực tiếp bằng Wordpress
+- User lên X-press và login bằng tài khoản google trùng với tài khoản chọn để cài đặt thư viện
+- User chọn một trong các theme trong kho Wordpress của mình, xem giao diện và khoanh vùng + comment những vùng cần sửa
+- User, mô tả yêu cầu (ngôn ngữ tự nhiên) sửa tổng quan vào khung chat
 - Hỗ trợ cả tiếng Việt và tiếng Anh
 
 ### Bước 3 — AI Code + Preview song song
@@ -98,6 +100,8 @@ User / WP Site
   - **Trái**: Panel AI với log tiến trình coding theo từng bước
   - **Phải**: Preview panel — ban đầu là skeleton loader, sau đó render live khi code xong
 - User thấy AI "đang làm việc" theo thời gian thực
+- User thấy thông báo AI đã chuyển đổi và code xong thì nhấn vào preview để xem giao diện mới đã chỉnh sửa
+- User nhấn xem full thì hệ thống ra ngoài màn hình browser mới
 
 ### Bước 4 — Visual Edit
 - Sau khi preview sẵn sàng, user hover chuột lên bất kỳ element nào
@@ -106,9 +110,17 @@ User / WP Site
 - User typing requirement in chat 
 - AI code and sửa đúng component tương ứng, không ảnh hưởng phần còn lại
 
-### Bước 5 — Export/Deploy
-- Download toàn bộ React project dưới dạng .zip
-- Hoặc deploy thẳng lên Vercel/Netlify trong 1 click
+### Bước 5 — Public/Deploy
+- User nhấn Pulic để đồng bộ thay đổi ở X-press sang Wordpress hiện tại
+- User nhấn deploy thẳng lên server để người khác xem bằng domain của X-press (có hoặc không cần github 2)
+- User setup thay đổi domain của bản thân
+
+### Bước 6 - Daily usage X-press
+- User được hệ thống đưa ra những lý do nên rời nền tảng Wordpress qua X-press để quản trị Website bán hàng và Landing page của mình
+- User sẽ chọn Design element hoặc page của Website mình ở X-press thay vì design tay ở Wordpress
+- User sẽ đăng bài và viết bài trên X-press, quản lý website như đăng sản phẩm, thanh toán, làm hoá đơn...trên X-press
+- X-press cung cấp dashboard theo dõi hành vi của khách hàng cho Website ở nền tảng X-press 
+- Trong giai đoạn đầu, nếu User chưa quen X-press thì khi họ thay đổi element gì ở Wordpress thì X-press đều thông báo để user commit ở X-press
 
 ---
 
