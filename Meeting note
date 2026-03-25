@@ -15,3 +15,26 @@
 
 **Mục tiêu cao nhất**:
 - | Import SQL + parse WordPress DB |
+
+## 1. Meeting note lần 2: 
+
+**Của Minh và team**:
+
+**Của Vinh**:
+- Hiện tại đã làm được luồng tự động
+- Vấn đề hiện tại: 
+**Migrate rủi ro**
+=> Lấy codebase rồi, không biết là có lấy hết không? Đọc xong thì render lại giao diện mới sai, problem daily active user
+- Next action:
+1. Thứ 5,6 test thử sync wp -> git -> xpress với LA
+2. Develop thêm metric đo động và tĩnh
+3. Ghép và test với pipeline của LA
+
+**Của LA**
+AI Pipeline 
+- templates: html, layout, tạo page mới thì tạo trong đây 
+- parttern: nevigation
+**Next action của LA**
+- Làm rõ AI plan như thế nào => Mục đích để optimze AI Gen ra được đúng vị trí component, color, font chữ
+- Triển khai luồng người dùng comment bài post trên Wordpresss, thì AI có tạo được API và hiển thị lên Fronnted? Thử luồng ngược lại'
+- AI tạo bảng mới vào database, cấu trúc api mới và hiện thị lên UI
