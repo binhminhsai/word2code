@@ -1,4 +1,4 @@
-# 1. Thế hoạch sử dụng nhà cung cấp Việt Nam (ThueGPU.vn)**:
+# 1. Thế hoạch sử dụng nhà cung cấp Việt Nam (ThueGPU.vn):
 Đây là nền tảng đang có mức giá theo giờ thuộc hàng tốt nhất thị trường Việt Nam cho nhu cầu cá nhân.
 
 - **Tùy chọn 1**: Hiệu năng cao nhất trong tầm giá (Khuyên dùng)
