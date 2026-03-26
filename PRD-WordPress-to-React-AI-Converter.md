@@ -73,25 +73,42 @@ User / WP Site
 ## 4. Hành trình người dùng (User Journey)
 
 ```
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-[Connect Github 1] → [AI Phân tích WP source] → [AI Gen React code]
-       → [Preview live] → [Chat Edit UI] → [Export to Github 2] → [Auto Deploy]
-=======
-=======
->>>>>>> Stashed changes
-[Import Codebase] → [Nhập yêu cầu qua Chat] → [AI Code + Preview song song] → [Visual Edit by choose,chat and AI] → [Export/Deploy]
+Luồng 1: Migrate and Refine WP to X-press
+
+User                     X-press (AI)
+ │                            │
+ ├─ Import WP Codebase ──────►│
+ │                            ├─ Analyze WP Source
+ │                            ├─ Extract Structure & Data
+ │◄──────── Parsed Structure ─┤
+ │
+ ├─ Nhập yêu cầu (Chat) ─────►│
+ │                            ├─ Generate React Code
+ │◄──────── Initial UI + Code ┤
+ │
+ ├─ Refine UI / Logic ───────►│
+ │                            ├─ Apply Changes
+ │                            ├─ Optimize Components
+ │◄──────── Updated UI State ─┤
+ │
+ ├─ Export / Deploy ─────────►│
+ │                            ├─ Build Output
+ │                            ├─ Deploy App
+ │◄──────── Live App / URL ───┤
+ │
+ ▼
+     X-press App Ready
 ```
 
 ### Bước 1 — Cài đặt plugin của X-press cung cấp vào Wordpress của mình
-- User upload file zip hoặc cài plugin X-press Vibecode để automation workflow access and push "codebase, database infomation to github"
-- User đăng nhập tài khoản google để login plugin và cấp quyền truy cập cho plugin
-- Hệ thống tự tạo "github 1" cho dự án và đấy toàn bộ source code Wordpress lên đó (gồm codebase để AI Migrate Frontend, database information để call dữ liệu)
+- Trên giao diện onboarding User được mời download file zip plugin lên Wordpress của họ hoặc cài plugin X-press Vibecode trong store Wordpress để automation workflow access and push "codebase, database infomation to github"
+- Hệ thống chuyển người dùng sang màn hình chờ, để Hệ thống tự tạo "github 1" cho dự án và đấy toàn bộ source code Wordpress lên đó (gồm codebase để AI Migrate Frontend, database information để call dữ liệu)
+- Sau khi cài đặt plugin và cấp quyền, hệ thống tự nhận diện được khách hàng ấy là chủ sỡ hữu của Github Wordpress nào qua gmail của Wordpress và hiển thị yêu cầu đăng nhập chính xác gmail admin đó vào X-press browser
 
 ### Bước 2 — Chat với X-press
 #### Mục đích user vào Web X-press là để sửa component đang có ở Wordpress thành một dạng khác bằng AI chat thay vì sửa trực tiếp bằng Wordpress
-- User lên X-press và login bằng tài khoản google trùng với tài khoản chọn để cài đặt thư viện
-- User chọn một trong các theme trong kho Wordpress của mình, xem giao diện và khoanh vùng + comment những vùng cần sửa
+- User chọn một một trong những github đang có đại diện cho từng dự án Wordpress của họ (về có nhiều trường hợp user có nhiều host Wordpress khác nhau cho những lĩnh vực khách nhau)
+- Sau khi import github 1 thì hiện ra giao diện các theme trong kho Wordpress của mình, hệ thống render code php, user xem giao diện và khoanh vùng + comment những vùng cần sửa
 - User, mô tả yêu cầu (ngôn ngữ tự nhiên) sửa tổng quan vào khung chat
 - Hỗ trợ cả tiếng Việt và tiếng Anh
 
@@ -124,281 +141,143 @@ User / WP Site
 
 ---
 
-## 4. Tính năng chi tiết (Feature Specifications)
+## 5. Tính năng chi tiết (Feature Specifications)
 
-### 4.1 Import Module
+### 5.1 Import Codebase & Khởi tạo (Import Module)
 
-#### F-01: WordPress Database Import
-**Mô tả**: Nhận và phân tích WordPress database dump
+#### F-01: WordPress Plugin Integration
+**Mô tả**: Plugin WordPress (X-press Vibecode) tự động thiết lập quyền truy cập repository, chuyển codebase và database lên hệ thống Github 1. 
 
-**Acceptance Criteria** (Gherkin):
-```gherkin
-Given user đã có file .sql từ WordPress
-When user kéo thả file vào drop zone hoặc click upload or automation access and pull codebase
-Then hệ thống validate file: phát hiện bảng wp_posts, wp_options, wp_users
-And hiển thị summary card: số posts, pages, media attachments, active theme
-And enable nút "Bắt đầu chuyển đổi"
-
-Given file upload không phải WordPress database
-When hệ thống phân tích
-Then hiển thị error message rõ ràng: "Không phát hiện cấu trúc WordPress. Vui lòng kiểm tra lại."
-```
-
-**Dữ liệu được trích xuất**:
-- `wp_posts`: Bài viết, trang, menus, media
-- `wp_options`: Theme settings, site title, description, permalinks
-- `wp_postmeta`: Custom fields, featured images
-- `wp_terms` + `wp_term_taxonomy`: Categories, tags
-- `wp_users`: Author info
-- CSS/theme files được reference trong DB
-
----
-
-#### F-02: Theme Detection & Analysis
-**Mô tả**: AI đọc active theme, phân tích layout structure
-
-**Logic**:
-1. Đọc `wp_options` → `template` và `stylesheet` → biết tên theme
-2. Tra cứu theme structure từ database metadata
-3. Parse PHP template hierarchy (header.php, footer.php, page.php, single.php)
-4. Trích xuất CSS variables, color palette, typography
-5. Map sang React component structure
-
----
-
-### 4.2 Chat Interface
-
-#### F-03: AI Chat Panel
-**Mô tả**: Giao diện chat để user ra lệnh
-
-**Yêu cầu UI**:
-```
-┌─────────────────────────────┐
-│  📎 database.sql  ✓ Đã load │
-├─────────────────────────────┤
-│                             │
-│  [Lịch sử chat]             │
-│                             │
-├─────────────────────────────┤
-│  ✏️ Nhập yêu cầu...    [↵] │
-└─────────────────────────────┘
-```
+**Workflow**:
+- 1. Từ flow Onboarding, người dùng tải file zip plugin sau đó vào host Wordpress của mình để tải lên hoặc download trên store WP.
+- 2. Plugin tiến hành automation thiết lập workflow, đóng gói source code (Themes, Plugins context ứng dụng) và database (hoặc cấu hình thông qua REST).
+- 3. Tự động đẩy dữ liệu lên kho chứa (Github 1) được tạo riêng cho dự án trên hệ thống.
+- 4. Xác thực và map định danh chủ sở hữu website thông qua Gmail quản trị viên (Admin WordPress), điều hướng và hiển thị yêu cầu liên kết đăng nhập chính xác trên trình duyệt.
 
 **Acceptance Criteria**:
-```gherkin
-Given database đã được import thành công
-When user gõ lệnh và nhấn Enter
-Then AI phân tích yêu cầu và bắt đầu generate code
-And giao diện chuyển sang màn hình Split View (F-04)
-And chat history vẫn hiển thị ở panel trái
-```
-
-**Các lệnh được hỗ trợ (ví dụ)**:
-- "Chuyển toàn bộ sang React, giữ nguyên giao diện"
-- "Đổi font sang Inter, màu primary sang #2563EB"
-- "Thêm dark mode"
-- "Tối ưu mobile responsive cho trang chủ"
+- Tự động push mã nguồn và thông tin database lên GitHub thành công.
+- Hệ thống nhận diện đúng Gmail Admin WordPress để yêu cầu login đồng bộ trên trình duyệt X-press.
 
 ---
 
-### 4.3 Split View — AI Code + Preview
+### 5.2 X-press Chat Interface (Tương tác khởi tạo)
 
-#### F-04: Split View Layout
-**Mô tả**: Màn hình chia đôi hiển thị quá trình AI code và preview
-
-**Layout**:
-```
-┌────────────────────┬────────────────────┐
-│  AI Progress Panel │   Preview Panel    │
-│                    │                    │
-│  ✓ Phân tích DB   │  [Skeleton loader] │
-│  ✓ Tạo components │                    │
-│  ⏳ Build routes  │  → Live preview    │
-│  ○ Optimize CSS   │     khi xong       │
-│                    │                    │
-│  [Log detail...]  │                    │
-└────────────────────┴────────────────────┘
-```
-
-#### F-05: AI Progress Panel (Trái)
-**Mô tả**: Hiển thị tiến trình AI coding theo thời gian thực
-
-**Các bước tiến trình**:
-1. 🔍 Phân tích cấu trúc database
-2. 🎨 Tái tạo theme và design system
-3. 📄 Tạo các React components (Header, Footer, Hero, Card...)
-4. 🔗 Build routing và navigation
-5. 📝 Import toàn bộ nội dung (posts, pages)
-6. 🖼️ Xử lý media và hình ảnh
-7. ✅ Hoàn tất — Preview sẵn sàng
-
-**Hiển thị**:
-- Progress bar tổng thể
-- Từng bước có icon trạng thái: ✓ (xong), ⏳ (đang xử lý), ○ (chưa bắt đầu)
-- Code snippet nhỏ hiển thị live khi từng file được tạo (kiểu terminal typing effect)
-- Thời gian ước tính còn lại
+#### F-02: Giao diện AI Chat & Khai báo yêu cầu
+**Mô tả**: Giao diện cho phép chọn repo/dự án, xem trước layout thô và gửi request tuỳ chỉnh.
 
 **Acceptance Criteria**:
-```gherkin
-Given AI đang generate code
-When một component được tạo xong
-Then panel trái cập nhật real-time: hiển thị tên file và số dòng code
-And progress bar tăng tương ứng
-
-Given toàn bộ code đã được generate
-When preview panel render xong
-Then hiển thị toast: "Preview sẵn sàng! Click vào bất kỳ phần nào để chỉnh sửa"
->>>>>>> Stashed changes
-```
+- Cho phép người dùng chọn một trong những github đang có đại diện cho từng dự án Wordpress của họ (khi có nhiều host khác nhau).
+- Cung cấp viewer để xem trước cấu trúc UI (render code PHP page và theme đã lấy).
+- Cung cấp công cụ Annotated: người dùng khoanh vùng và comment chi tiết vào các khối giao diện (component) cần sửa đổi.
+- Panel chat AI: nhận mô tả yêu cầu (prompt) bằng ngôn ngữ tự nhiên về mong muốn chuyển đổi/sửa/thêm đổi tổng quan. (Hỗ trợ tiếng Việt và tiếng Anh).
 
 ---
 
-## 5. Tính năng chi tiết
+### 5.3 Màn hình Split View (AI Code + Live Preview)
 
-### 5.1 Import Module — 3 Mode
+#### F-03: Theme Detection & Analysis codebase
+**Mô tả**: AI đọc active theme, phân tích layout structure, viết code frontend tạo page, component, element và code backend Rest API tới database.
 
-#### Mode A: SQL File Upload
-- User upload file `.sql` dump từ WordPress
-- AI phân tích ngoại tuyến, không cần kết nối
-- An toàn nhất, phù hợp khi có full DB export
+**Workflow**:
+- 1. Đọc context các file → `template` và `stylesheet` → biết tên theme.
+- 2. Tra cứu theme structure từ dữ liệu metadata của file gốc.
+- 3. Parse cấu trúc template phân cấp (header.php, footer.php, page.php, single.php).
+- 4. Phân tích nội dung CSS variables, color palette, typography.
+- 5. Lập map chuyển đổi sang React component structure tương ứng.
+- 6. Xây dựng cấu trúc backend để Rest API tới database lấy nội dung các bài blog, comment, sản phẩm, danh mục, tag, user, ...
 
-#### Mode B: Database Direct Connect
-- User cung cấp: host, port, username, password, database name
-- Tool kết nối MySQL/MariaDB, query tuần tự:
-  - `wp_options` → site config, active theme
-  - `wp_posts` → posts, pages
-  - `wp_postmeta` → custom fields, featured images
-  - `wp_terms` → categories, tags
-  - `wp_users` → authors
-- Credentials không được lưu, xoá sau khi query xong
-- Giới hạn: cần mở MySQL port (3306), không lấy được PHP theme files
+**Acceptance Criteria**:
+- Nhận diện Theme: Định danh chính xác tên, phiên bản và các file core của Active Theme từ GitHub 1.
+- Phân tích Cấu trúc (Parsing): Parse thành công sơ đồ phân cấp PHP (Header, Footer, Page, Single, Archive) thành bản đồ cấu trúc (Layout Map).
+- Trích xuất Design System: Thu thập đầy đủ các biến CSS (Colors, Typography, Spacing) và lưu trữ cho React (tạo một file nào đó).
+- Mapping Frontend: Chuyển đổi sơ đồ Layout Map sang cây thư mục React Components và xây dụng Routing.
+- Khởi tạo Backend API: Tự động tạo bộ REST API endpoints (Node.js/Express) kết nối trực tiếp vào WordPress Database hiện tại.
+- Đầy đủ Resource: API phải fetch được toàn bộ dữ liệu từ các bảng: Posts, Postmeta, Categories, Tags, Users và Products (nếu có).
+- Xử lý Ngoại lệ: Hệ thống có cơ chế Fallback (mẫu chuẩn) nếu phát hiện file PHP của theme gốc bị lỗi hoặc không đúng cấu trúc WordPress.
+- Độ chính xác: Mã nguồn React được gen ra phải phản ánh đúng >90% cấu trúc UI cũ và các API Endpoint có tốc độ phản hồi <200ms.
 
-#### Mode C: WordPress REST API
-- User cung cấp domain + Application Password (WP 5.6+ built-in)
-- Gọi các endpoint song song:
-  - `/wp/v2/posts`, `/wp/v2/pages`, `/wp/v2/media`
-  - `/wp/v2/categories`, `/wp/v2/tags`, `/wp/v2/themes`
-- Không cần mở firewall, an toàn nhất cho hosting shared
-- Giới hạn: không lấy được PHP template structure, menu cần plugin
+#### F-04: Split View Layout & Tiến trình chạy song song
+**Mô tả**: Hệ thống sử dụng chế độ Layout chia màn hình làm 2 panel (Panel tiến trình AI bên trái / Panel Preview render bên phải) để cung cấp UI feedback liên tục.
 
-#### Mode D: Github Repository Import *(Vibepress-specific)*
-- User kết nối Github 1 (OAuth)
-- Vibepress clone repo, đọc trực tiếp từ source code:
-  - PHP theme files → map sang React component structure
-  - `functions.php`, `style.css`, template hierarchy
-  - `wp-content/themes/[active-theme]/`
-- Đây là mode chính của Vibepress (khác với 3 mode trên)
+**F-04.1: Panel AI Progress (Trái - Hệ thống đang xử lý)**
+***Acceptance Criteria***:
+- Hiển thị tiến trình coding và generate logic: 
+  - Phân tích cấu trúc thư mục & yêu cầu prompt.
+  - Tái tạo theme và setup design system React.
+  - Tạo các components React & setup routing theo context hiện có từ Github 1.
+  - Text/Code streaming (log tiến trình).
+- Icon trạng thái từng bước: hoàn tất, đang tải, pending.
 
----
-
-### 5.2 AI Agent Pipeline
-
-```
-Github 1 (WP source)
-    │
-    ▼
-[Bước 1] Phân tích cấu trúc thư mục & theme
-    │
-    ▼
-[Bước 2] Parse PHP templates → Component tree plan
-    │
-    ▼
-[Bước 3] Đọc database (Mode A/B/C) → Lấy nội dung
-    │
-    ▼
-[Bước 4] AI gen React components + routing
-    │
-    ▼
-[Bước 5] AI gen backend API để fetch DB
-    │ (shared database — cả WP lẫn React đều dùng)
-    ▼
-[Bước 6] Build & Preview live
-    │
-    ▼
-[Bước 7] Push to Github 2 + CI/CD deploy
-```
-
-**Về backend access database**: React app gen ra sẽ có backend layer (Node.js/Express) kết nối trực tiếp vào WordPress database hiện tại (shared DB). AI gen endpoint theo chuẩn REST để React query. WP vẫn chạy song song dùng chung DB đó. Không cần auth riêng nếu backend nằm cùng server — nếu khác server thì dùng credentials Mode B.
+**F-04.2: Preview Panel (Phải - Kết quả Render thực nghiệm)**
+***Acceptance Criteria***:
+- Ban đầu là giao diện khung (skeleton loader).
+- Hiển thị giao diện tương ứng cho các checkpoint lớn như: Plan/ Generate Theme/ Generate Component/ Generate API/ Generate Routing/ Metric Evaluate/ Redesign.
+- Nhận event lắng nghe trigger để build ra ứng dụng Live ngay khi code AI thực thi hoàn thành.
+- Giao diện có hiển thị nút Expand ("Xem Full") để chuyển sang tab trình duyệt độc lập, xem UI ở chế độ trải nghiệm website.
+- Khi preview đã sẵn sàng và render, hệ thống thông báo cho user (Toast).
 
 ---
 
-### 5.3 Sync Automation
+### 5.4 Visual Editor (Tinh chỉnh Component bằng Chat)
 
-#### WP → Git (for user)
-```
-User chỉnh sửa WP → Webhook trigger → Vibepress detect changes
-    → Pull diff từ WP DB → Update React source → Push to Github 2
-    → CI/CD rebuild → Deploy
-```
+#### F-05: Contextual Element-Level Editor
+**Mô tả**: Cung cấp khả năng tinh chỉnh nhanh các chi tiết trên giao diện đã sinh ra bằng màn hình Canvas.
 
-#### Git → WP (for robot)
-```
-User chỉnh sửa React code qua Vibepress chat
-    → Vibepress Agent update source → Push Github 2
-    → Sync engine write changes back to WP DB
-    → WP site cập nhật tương ứng
-```
+**Acceptance Criteria**:
+- Khi user di chuột (hover) vào bất kỳ thành phần giao diện nào ở tab Preview, hệ thống sẽ bọc element với viền màu highlight (vd: border xanh).
+- Hiển thị icon thao tác chỉnh sửa (bút / edit tooltip) ngay vị trí chuột để click.
+- Click chuyển đổi sang trạng thái Focused-Edit: 
+  - Giao diện hiển thị một popup comment riêng riêng chỉ nhận diện content và logic cho component đó.
+  - User nhập yêu cầu (requirement typing).
+  - Với nhiều yêu cầu, thì pannel bên tay phải canvas xuất hiện, sau khi comment xong user bấm nút "Run" hoặc typing vào global chat để AI sẽ ưu tiên xử lý theo thứ tự comment của user.
+  - AI khởi động coding lại duy nhất vùng giới hạn của DOM tree và React Component đó, ngăn chặn thay đổi chéo.
+  - Preview hot-reload lại bộ giao diện sau khi thay đổi (không load cả frame).
 
 ---
 
-### 5.4 Visual Editor & Chat
+### 5.5 Deploy & Sync (Xuất bản và Đồng bộ)
 
-- **Edit Mode toggle**: Bật/tắt chế độ chỉnh sửa visual
-- **Element hover**: Highlight component với border xanh + tooltip tên component
-- **Click to edit**: Mở chat panel với context đúng component
-- **AI chỉ sửa đúng component được chọn**, phần còn lại không thay đổi
-- **Property panel**: Quick-edit CSS thông dụng (font, color, spacing, border)
-- **Preview refresh**: Tự động cập nhật sau khi AI sửa xong (< 5 giây)
+#### F-06: 2nd Mode Deployment System (Public / Host)
+**Mô tả**: Hành vi thay đổi trạng thái codebase sang chế độ Production.
 
-<<<<<<< Updated upstream
----
-=======
-**UX Flow**:
-1. User bật chế độ "Edit Mode" (toggle button ở thanh toolbar)
-2. Hover chuột lên bất kỳ element nào → element bị highlight với border xanh
-3. Tooltip nhỏ hiển thị tên component: "CardContent", "HeroSection", v.v.
-4. Click vào element → mở panel chat sidebar, có sẵn context: "Đang chỉnh sửa: CardContent"
-5. User gõ yêu cầu, AI start plan, coding chỉ sửa đúng component đó
-6. Preview tự động refresh component vừa được sửa
->>>>>>> Stashed changes
+**Workflow**:
+**Public Mode**:
+- 1. Hệ thống kiểm tra trạng thái tương đồng của codebase và database của X-press và Wordpress host qua (Github 1) để nhắc nhở người dùng commit.
+- 2. User nhấn nút Public để đồng bộ những thay đổi của database và source code về Wordpress host của người dùng.
+- 3. Hệ thống đồng bộ các thay đổi ở X-press trả ngược về codebase và database của site WordPress gốc đang chạy (pipeline AI lần 2 từ REACT sang PHP).
+**Host Mode**:
+- 1. Người dùng nhấn Deploy để sử dụng X-press như một nền tảng phát triển web độc lập.
+- 2. Hệ thống deploy ra Internet sử dụng domain của X-press platform (hoặc cấu hình Custom Domain từ user). (Workflow có thể tạo repo thứ 2 là Github 2).
+- 3. Khi người dùng đăng blog hoặc khách hàng comment trên Web thì hệ thống lưu về database để dùng chung với Wordpress. 
 
-### 5.5 Metrics — Evaluate Migration Performance
 
-| Metric | Công thức / Cách đo |
-|--------|---------------------|
-| Visual Accuracy | Pixel diff screenshot WP vs React (tool: Percy / Chromatic) |
-| Performance Score | Lighthouse score React vs WP (LCP, FID, CLS) |
-| Content Coverage | % posts/pages được migrate thành công |
-| Sync Latency | Thời gian từ khi thay đổi WP đến khi React cập nhật |
-| Build Time | Thời gian từ import đến preview sẵn sàng |
+**Acceptance Criteria**:
+- **Nút Public (Sync)**: Thực hiện đồng bộ các thay đổi ở X-press trả ngược về codebase và database của site WordPress gốc đang chạy. 
+- **Nút Deploy (Hosting)**: Chuyển đổi trạng thái project thành ứng dụng React App và deploy ra Internet sử dụng domain của X-press platform (hoặc cấu hình Custom Domain từ user). (Workflow có thể tạo repo thứ 2 là Github 2).
 
 ---
 
-### 5.6 Deploy & Domain Management *(VINH)*
+### 5.6 Metrics & Daily Usage 
 
-Sau khi AI gen xong và user hài lòng với preview, Vibepress tự động deploy React site lên infrastructure của nền tảng.
+#### F-07: Dashboard Tracking & Management (Vibepress CMS / E-commerce module)
+**Mô tả**: Phục vụ tương tác Daily Active user để giữ chân user lại trên X-press thay vì sử dụng WordPress Admin.
+- X-press Admin cung cấp: trình đăng/viết bài, edit sản phẩm, hóa đơn thanh toán.
+- Tracking & Analytics Dashboard báo cáo performance và tương tác người mua hàng.
+- Logic đồng bộ notification: Trong giai đoạn mới làm quen vòng lặp, nếu user vô tình thay đổi data cơ sở bên WP dashboard, X-press hiển thị notice thông báo chênh lệch dữ liệu để yêu cầu người dùng commit / sync về chiều của X-press.
 
-**Domain mặc định (tự động cấp)**:
-- Mỗi project được cấp subdomain: `[project-slug].vibepress.app`
-- Không cần cấu hình, sẵn sàng ngay sau lần deploy đầu
-- HTTPS tự động qua Let's Encrypt
+---
 
-**Custom domain (tùy chọn — user tích chọn)**:
-- User bật toggle "Dùng domain riêng" trong Settings
-- Nhập domain: `mysite.com`
-- Vibepress hiển thị DNS records cần trỏ (CNAME hoặc A record)
-- Sau khi DNS propagate → Vibepress verify và cấp SSL tự động
-- Cả `vibepress.app` subdomain và custom domain đều hoạt động song song hoặc subdomain bị redirect về custom domain (user chọn)
+### 5.7 Integration Pipeline & Automation Tools
 
-**CI/CD Flow (VINH)**:
+**X-press → Git → WP (for user workflow Sync)**:
 ```
-User approve preview
-    → Vibepress trigger Github Actions (Github 2)
-    → Build React app (pnpm build)
-    → Deploy lên Vibepress hosting
-    → Cập nhật DNS routing cho domain
-    → Notify user: "Site live tại [domain]"
+User update code tại Component X-press Chat 
+    → Vibepress Agent commit Github 2 (to deploy)
+    → Sync webhook push file qua WordPress Plugin (wp to git)
+    → WordPress Live đổi dạng (x-press -> AI pipeline 2-> git)
 ```
+
+**Evaluate Migration Metrics Tracking**: Cung cấp baseline so sánh độ tiệm cận giao diện (Pixel diff tool) và tối ưu Lighthouse cho các tính năng hệ thống sau Migration.
 
 ---
 
