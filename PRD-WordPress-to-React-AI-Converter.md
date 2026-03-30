@@ -318,20 +318,18 @@ User update code tại Component X-press Chat
 
 | Task | Owner | Start | Launch | Status | Ghi chú |
 |------|-------|-------|--------|--------|---------|
-| Create WordPress Website | LE ANH + VINH | 19/03 | Week 3 | In Progress | Website mẫu để test |
-| Push WP source code to Github 1 | LE ANH + VINH | 19/03 | Week 3 | In Progress | Setup repo chuẩn |
-| Test AI Gen Themes from Git + DB access | LE ANH | 20/03 | Week 3 | In Progress | Verify AI đọc được theme |
-| Build Metric evaluate migration performance | VINH | 20/03 | Week 3 | In Progress | Định nghĩa baseline metrics |
-| Case: AI Plan Frontend & Backend | LE ANH | 26/03 | Week 4 | In Progress | Pipeline chart -> Source code Component tree + API plan |
-| Case: Automation sync WP ↔ VP-CASSO ↔ Git | VINH | 26/03 | Week 4 | In Progress | Pipeline chart -> Source code WP→Git1, Git1→VP, VP→Git2, VP->Git1, Git1→WP |
-| Checkpoint 1 in Week | **All team** | 25/03 | Week 4 | In Progress | Process: VINH show input github 1 (source) -> LANH show and final flow AI plan -> VINH start optimize metric compare migrate -> LANH start to merge (input Git1 + metric to agent) -> (Tool 1 for Agent)|
-| Case: AI Gencode base plan & data | LE ANH | 26/03 | Week 4 | Not Started | Pipeline chart -> React code generation |
-| Optimize input and ouput Metric evaluate migration performance For LANH | VINH | 26/03 | Week 4 | Not Started | Định nghĩa baseline metrics |
-| Build Prototype Draft 1 | PM | 26/03 | Week 4 | Not Started | Figma/static prototype |
-| Checkpoint 2 in Week | **All team** | 26/03 | Week 4 | Not Started | Process: VINH show metric -> LANH merge in pipeline gen code of AI -> Minh show prototype |
-| Case: Automation CI/CD Git to server | VINH | 27/03 | Week 4 | Not Started | OAuth + clone flow |
-| Case: AI Revise Frontend by chat | LE ANH | 27/03 | Week 4 | Not Started | Chat edit loop |
-| **Merge system & Demo 1** | **All team** | **27/03** | *Week 4* | **Not Started** | **Internal demo** |
+| Create WordPress Website | LE ANH + VINH | 19/03 | Week 3 | Completed | Website mẫu để test |
+| Push WP source code to Github 1 | LE ANH + VINH | 19/03 | Week 3 | Completed | Setup repo chuẩn |
+| Test AI Gen Themes from Git + DB access | LE ANH | 20/03 | Week 3 | Completed | Verify AI đọc được theme |
+| Build Metric evaluate migration performance | VINH | 20/03 | Week 3 | Completed | Định nghĩa baseline metrics |
+| Case: AI Plan Frontend & Backend | LE ANH | 26/03 | Week 4 | Completed | Pipeline chart -> Source code Component tree + API plan |
+| Case: Automation sync WP ↔ VP-CASSO ↔ Git | VINH | 26/03 | Week 4 | Delay | Pipeline chart -> Source code WP→Git1, Git1→VP, VP→Git2, VP->Git1, Git1→WP |
+| Checkpoint 1 in Week | **All team** | 25/03 | Week 4 | Completed | Process: VINH show input github 1 (source) -> LANH show and final flow AI plan -> VINH start optimize metric compare migrate -> LANH start to merge (input Git1 + metric to agent) -> (Tool 1 for Agent)|
+| Case: AI Gencode base plan & data | LE ANH | 26/03 | Week 4 | Completed | Pipeline chart -> React code generation |
+| Optimize input and ouput Metric evaluate migration performance For LANH | VINH | 26/03 | Week 4 | Completed | Định nghĩa baseline metrics |
+| Build Prototype Draft 1 | PM | 26/03 | Week 4 | Completed | Figma/static prototype |
+| Checkpoint 2 in Week | **All team** | 26/03 | Week 4 | Completed | Process: VINH show metric -> LANH merge in pipeline gen code of AI -> Minh show prototype |
+| **Merge system & Demo 1** | **All team** | **27/03** | *Week 4* | **Completed** | **Internal demo** |
 
 **Done = Demo 1 chạy được**: Import Github 1 → AI gen vài component → hiển thị preview
 
@@ -341,32 +339,33 @@ User update code tại Component X-press Chat
 **Thời gian**: Week 5 (28/03 – 03/04/2026)  
 **Mục tiêu**: End-to-end pipeline hoạt động — Github 1 → AI → React preview → Github 2
 
-| Task | Owner | Deadline | Mô tả |
-|------|-------|---------|-------|
-| Github OAuth integration hoàn chỉnh | VINH | 01/04 | User connect repo không cần manual token |
-| AI đọc được full PHP theme structure | LE ANH | 01/04 | Parse header/footer/template hierarchy |
-| Gen được React components cơ bản | LE ANH | 02/04 | Header, Footer, Layout, Page shell |
-| Backend layer gen + connect shared DB | VINH | 02/04 | Node/Express API query WP DB |
-| Push React code to Github 2 | VINH | 03/04 | Auto-commit sau khi gen xong |
-| Live preview chạy được trong Vibepress | LE ANH | 03/04 | iframe preview internal |
+| Task | Owner | Deadline | Mô tả | Status |
+|------|-------|---------|-------|-------|
+| Build tool evaluate performance dong va tinh | VINH | 31/03 | Nevigation & API query WP DB to compare | In progress |
+| AI Open source gen được React and Nodejs | LE ANH | 31/03 | Reseach and run thu opensource tren Mac mini | In progress |
+| Complete Tool Sync WP ≍ Git| VINH | 02/04| Testing 2 case | Not Started |
+| Test pipeline AI migrate full WP Page (Frontend/Rest API) | LE ANH | 02/04 | Nevigation/Blog/Comment/Store (WooCommerce)| Not Started |
+| Enhance prototype through requirement cua anh Diep | Minh | 02/04| Research (31.03) -> Redesign (02.04) | Not Started |
+| Push React code to Github 2 | VINH | 03/04 | Auto-commit sau khi gen xong | Not Started |
+| Live preview chạy được trong x-press with open source model | LE ANH | 03/04 | iframe preview internal | Not Started |
+| Case: Automation CI/CD Git to server | VINH | 03/04 | OAuth + clone flow | Delay |
+| Case: AI Revise Frontend by chat | LE ANH | 03/04 | Chat edit loop | Delay |
 
-**Done = Demo 2**: Import repo → AI gen → Preview live → Code có trên Github 2
+**Done = Demo 2**: Import repo (refine UI/UX) → AI gen (open source) → Preview live & evaluation → Code có trên Github 2 (tool automation)
 
 ---
 
 ### CHECKPOINT 3: Content & AI Generation Engine
 **Thời gian**: Week 6 (04/04 – 10/04/2026)  
-**Mục tiêu**: Toàn bộ nội dung WP được migrate, AI gen đủ pages, routing đúng
+**Mục tiêu**: Toàn bộ nội dung WP được migrate, AI gen đủ pages, routing đúng, CI/CD lên server
 
 | Task | Owner | Deadline | Mô tả |
 |------|-------|---------|-------|
-| Import đủ posts, pages, media | VINH | 07/04 | Query WP DB + map sang JSON |
-| Routing đầy đủ: `/`, `/blog`, `/blog/:slug`, `/page/:slug` | LE ANH | 07/04 | React Router setup |
-| Gen Blog listing + Single post page | LE ANH | 08/04 | Dynamic content render |
-| Menu navigation migrate chính xác | LE ANH | 08/04 | Lấy từ wp_terms/menus |
-| Media handling: ảnh, thumbnail | VINH | 09/04 | URL reference hoặc re-host |
-| Performance metrics dashboard | VINH | 10/04 | So sánh Lighthouse WP vs React |
-| Visual accuracy score tự động | LE ANH | 10/04 | Screenshot diff tool |
+| Testing Performance của Agentic AI worfklow WP -> Next.js | VINH | 07/04 | Đúng routing, page, UI, đủ ảnh, blog, comment, product |
+| Testing Blog post + comment in Next.js code | LE ANH | 07/04 | Dynamic content render in database and sync to Wordpress |
+| AI Revise Frontend by chat (UI only) | LE ANH | 08/04 | Chỉ sửa mỗi UI, UX tạo table để sau|
+| Performance metrics dashboard | VINH | 08/04 | So sánh Lighthouse WP vs React, Rest API performance |
+| Checkpoint 3 - MVP X-press | LE ANH + VINH | 08/04 | Demo full luồng từ WP -> Next.js -> AI refine by chart |
 
 **Done = Demo 3**: Full WP site được migrate với đủ nội dung, đo được metrics
 
