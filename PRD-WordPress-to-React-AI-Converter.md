@@ -167,9 +167,11 @@ User                     X-press (AI)
 
 **Acceptance Criteria**:
 - Cho phép người dùng chọn một trong những github đang có đại diện cho từng dự án Wordpress của họ (khi có nhiều host khác nhau).
-- Cung cấp viewer để xem trước cấu trúc UI (render code PHP page và theme đã lấy).
-- Cung cấp công cụ Annotated: người dùng khoanh vùng và comment chi tiết vào các khối giao diện (component) cần sửa đổi.
-- Panel chat AI: nhận mô tả yêu cầu (prompt) bằng ngôn ngữ tự nhiên về mong muốn chuyển đổi/sửa/thêm đổi tổng quan. (Hỗ trợ tiếng Việt và tiếng Anh).
+- Khi chọn 1 trong những host đã có plugin của X-press thì user thấy những list page đã có trong Wordpress tổng
+- User thấy được thêm lịch sử commit của Git với Wordpress và X-press
+- Người dùng nhấn vào một trong các page đó thì system Cung cấp viewer để xem trước cấu trúc UI (render code PHP page và theme đã lấy).
+- Cung cấp công cụ Annotated: người dùng khoanh vùng và comment chi tiết vào các khối giao diện (component) cần sửa đổi ở trong môi trường canvas của từng page đó.
+- Khung chat AI: nhận mô tả yêu cầu (prompt) bằng ngôn ngữ tự nhiên về mong muốn chuyển đổi/sửa/thêm đổi tổng quan. (Hỗ trợ tiếng Việt và tiếng Anh).
 
 ---
 

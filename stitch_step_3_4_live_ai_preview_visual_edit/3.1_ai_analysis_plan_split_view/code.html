@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Alpha - AI Console</title>
+<!-- Google Fonts: Literata (Serif) & Nunito Sans (Sans) -->
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;0,700;1,400&amp;family=Nunito+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#ffffff",
+              "inverse-primary": "#8ecf9e",
+              "secondary-fixed-dim": "#d4ccbf",
+              "on-surface": "#2e3230",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#4a4538",
+              "background": "#faf6f0",
+              "surface-container-low": "#f5f1ea",
+              "secondary-fixed": "#f0e8db",
+              "tertiary": "#705c30",
+              "surface-variant": "#e4e0d8",
+              "on-error-container": "#690005",
+              "surface-container-highest": "#e4e0d8",
+              "error-container": "#ffdad8",
+              "on-secondary": "#ffffff",
+              "inverse-on-surface": "#f5f0e8",
+              "primary": "#4a7c59",
+              "on-tertiary-container": "#554020",
+              "error": "#b83230",
+              "tertiary-fixed": "#f8e0a8",
+              "on-secondary-fixed": "#1e1a13",
+              "on-primary-fixed-variant": "#2a6038",
+              "on-surface-variant": "#4a4e4a",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#f0ece4",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#2e3230",
+              "surface": "#faf6f0",
+              "on-background": "#2e3230",
+              "tertiary-fixed-dim": "#dcc48e",
+              "secondary-container": "#f0e8db",
+              "surface-container-high": "#eae6de",
+              "secondary": "#6b6358",
+              "primary-container": "#78a886",
+              "primary-fixed-dim": "#8ecf9e",
+              "primary-fixed": "#c8e8d0",
+              "on-tertiary-fixed": "#221a05",
+              "surface-tint": "#4a7c59",
+              "outline-variant": "#c4c8bc",
+              "on-primary-fixed": "#002110",
+              "outline": "#74796e",
+              "on-tertiary-fixed-variant": "#554020",
+              "on-primary-container": "#d8f0de",
+              "tertiary-container": "#c4a66a",
+              "surface-dim": "#dbd7cf",
+              "surface-bright": "#faf6f0",
+              "on-secondary-container": "#5e5548"
+            },
+            fontFamily: {
+              "headline": ["Literata", "serif"],
+              "body": ["Nunito Sans", "sans-serif"],
+              "label": ["Nunito Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .skeleton-pulse {
+            background: linear-gradient(90deg, #eae6de 25%, #f5f1ea 50%, #eae6de 75%);
+            background-size: 200% 100%;
+            animation: pulse-bg 2s infinite ease-in-out;
+        }
+        @keyframes pulse-bg {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar: Shared Component -->
+<header class="bg-[#faf6f0] dark:bg-stone-900 border-b border-stone-200 dark:border-stone-800 shadow-sm dark:shadow-none docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 h-16">
+<!-- Brand Logo -->
+<div class="text-xl font-bold text-[#4a7c59] dark:text-emerald-500 tracking-tight font-headline">
+                Project Alpha
+            </div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#4a7c59] dark:text-emerald-400 font-bold border-b-2 border-[#4a7c59] pb-1 font-body text-sm active:scale-95 duration-150 ease-in-out" href="#">Preview</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-[#4a7c59] font-body text-sm hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors px-3 py-1 active:scale-95 duration-150 ease-in-out" href="#">Visual Edit</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-[#4a7c59] font-body text-sm hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors px-3 py-1 active:scale-95 duration-150 ease-in-out" href="#">Public</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<button class="p-2 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors active:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined">sync</span>
+</button>
+<button class="p-2 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors active:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined">sensors</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-bold text-sm shadow-sm hover:opacity-90 active:scale-95 transition-all duration-150">
+                    Deploy
+                </button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile" data-alt="professional headshot of a developer in a modern studio with soft warm rim lighting and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBq_NbOk4z1Ra2ld11xaHKZhKg2bVoafdHWQAqvEmiGMsogZMlw2m6555Z7P4SxtESOFkvyZAI25Y26U98_wtvj28hxOIbB9VMqVJSKlSEelV5AIFycb6H37bZzZpUIX-8Ytq9luftJR9qPEmvn2k-7LoOoDOFmV1ioN9UYAgL-gO4LT61HzUq1BtaLoXj8qSy6n4mL81Zrec3ivHjOgohuNBrp_xXMOJa7EXN33W8oaSejGMCZvqnY8e_UT3r33LMmlpjF-CLNMw"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area: Split Screen Layout -->
+<main class="flex h-[calc(100vh-64px)] overflow-hidden">
+<!-- Left Panel: AI Agent Console (Dark Panel) -->
+<section class="w-1/2 bg-inverse-surface text-inverse-on-surface flex flex-col border-r border-outline">
+<div class="px-6 py-4 flex items-center justify-between bg-black/10">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<h2 class="font-headline text-lg tracking-tight">AI Agent Console</h2>
+</div>
+<div class="flex gap-2">
+<span class="text-xs font-mono opacity-50 px-2 py-1 bg-white/5 rounded">v2.4.0-stable</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 font-mono text-sm space-y-4">
+<!-- Log Entry 1 -->
+<div class="flex gap-3 items-start animate-fade-in">
+<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="space-y-1">
+<p class="text-inverse-primary">Reading context...</p>
+<p class="text-white/40 text-xs">Project root identified at /var/www/alpha-v2</p>
+</div>
+</div>
+<!-- Log Entry 2 -->
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="space-y-1">
+<p class="text-inverse-primary">Parsing PHP hierarchy...</p>
+<p class="text-white/40 text-xs">Mapped 124 classes and 48 functional entry points.</p>
+</div>
+</div>
+<!-- Log Entry 3 -->
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-lg animate-spin">sync</span>
+<div class="space-y-1">
+<p class="text-surface-container-lowest">Extracting CSS variables...</p>
+<p class="text-white/40 text-xs">Searching tailwind.config.js and global.css...</p>
+</div>
+</div>
+<!-- Code Streaming Simulation -->
+<div class="mt-8 p-4 bg-black/20 rounded-lg border border-white/5 font-mono text-xs leading-relaxed text-white/70">
+<div class="flex items-center gap-2 mb-2 text-white/30 border-b border-white/5 pb-2">
+<span class="material-symbols-outlined text-xs">code</span>
+<span>analysis_stream.py</span>
+</div>
+<p><span class="text-tertiary-fixed-dim">def</span> <span class="text-primary-fixed-dim">extract_design_tokens</span>(payload):</p>
+<p class="pl-4">tokens = payload.<span class="text-primary-fixed-dim">get</span>(<span class="text-secondary-fixed-dim">'style_vars'</span>)</p>
+<p class="pl-4 text-white/20"># Processing earthy color palette from JSON...</p>
+<p class="pl-4"><span class="text-tertiary-fixed-dim">for</span> key, val <span class="text-tertiary-fixed-dim">in</span> tokens.<span class="text-primary-fixed-dim">items</span>():</p>
+<p class="pl-8 text-primary-fixed-dim">print(f"Mapping {key} -&gt; {val}")</p>
+<p class="pl-8 text-secondary-fixed-dim">apply_tailwind_rules(key, val)</p>
+<div class="w-1 h-4 bg-primary inline-block animate-pulse ml-1"></div>
+</div>
+</div>
+<!-- Console Footer -->
+<div class="p-4 bg-black/10 border-t border-white/5 flex items-center justify-between">
+<div class="flex items-center gap-4 text-xs text-white/40">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">terminal</span> CLI Ready</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">memory</span> 1.2GB RAM</span>
+</div>
+<div class="text-xs text-primary font-bold">AGENT ACTIVE</div>
+</div>
+</section>
+<!-- Right Panel: Live Preview (Skeleton Loader) -->
+<section class="w-1/2 bg-surface-container-low flex flex-col">
+<div class="px-6 py-4 flex items-center justify-between border-b border-outline-variant bg-white/50 backdrop-blur-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">visibility</span>
+<h2 class="font-headline text-lg text-on-surface">Live Preview</h2>
+</div>
+<div class="flex items-center gap-2 bg-surface-container p-1 rounded-full border border-outline-variant">
+<button class="px-3 py-1 bg-white shadow-sm rounded-full text-xs font-bold text-primary">Desktop</button>
+<button class="px-3 py-1 text-xs font-bold text-on-surface-variant hover:text-on-surface">Mobile</button>
+</div>
+</div>
+<!-- Canvas Container -->
+<div class="flex-1 p-8 overflow-y-auto">
+<!-- Skeleton Website Simulation -->
+<div class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm overflow-hidden border border-outline-variant min-h-full">
+<!-- Skeleton Header -->
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<div class="w-32 h-6 skeleton-pulse rounded-md"></div>
+<div class="flex gap-4">
+<div class="w-16 h-4 skeleton-pulse rounded-md"></div>
+<div class="w-16 h-4 skeleton-pulse rounded-md"></div>
+<div class="w-16 h-4 skeleton-pulse rounded-md"></div>
+</div>
+</div>
+<!-- Skeleton Hero -->
+<div class="p-12 space-y-6">
+<div class="w-3/4 h-12 skeleton-pulse rounded-lg mx-auto"></div>
+<div class="w-full h-4 skeleton-pulse rounded-lg"></div>
+<div class="w-5/6 h-4 skeleton-pulse rounded-lg"></div>
+<div class="w-40 h-12 skeleton-pulse rounded-full mx-auto mt-8"></div>
+</div>
+<!-- Skeleton Content Grid (Bento style) -->
+<div class="p-12 grid grid-cols-3 gap-6">
+<div class="col-span-2 h-64 skeleton-pulse rounded-xl"></div>
+<div class="col-span-1 h-64 skeleton-pulse rounded-xl"></div>
+<div class="col-span-1 h-64 skeleton-pulse rounded-xl"></div>
+<div class="col-span-2 h-64 skeleton-pulse rounded-xl"></div>
+</div>
+<!-- Skeleton Footer -->
+<div class="p-12 bg-surface-container mt-12">
+<div class="grid grid-cols-4 gap-8">
+<div class="space-y-4">
+<div class="w-20 h-4 skeleton-pulse rounded-md"></div>
+<div class="w-full h-3 skeleton-pulse rounded-sm"></div>
+<div class="w-full h-3 skeleton-pulse rounded-sm"></div>
+</div>
+<div class="space-y-4">
+<div class="w-20 h-4 skeleton-pulse rounded-md"></div>
+<div class="w-full h-3 skeleton-pulse rounded-sm"></div>
+<div class="w-full h-3 skeleton-pulse rounded-sm"></div>
+</div>
+<div class="space-y-4">
+<div class="w-20 h-4 skeleton-pulse rounded-md"></div>
+<div class="w-full h-3 skeleton-pulse rounded-sm"></div>
+<div class="w-full h-3 skeleton-pulse rounded-sm"></div>
+</div>
+<div class="space-y-4">
+<div class="w-20 h-4 skeleton-pulse rounded-md"></div>
+<div class="w-full h-3 skeleton-pulse rounded-sm"></div>
+<div class="w-full h-3 skeleton-pulse rounded-sm"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual FAB (Hidden on split view based on logic, but defined if needed for full preview) -->
+<!-- Suppressed based on "Task-Focused" rule as this is an AI agent transaction/process -->
+</body></html>

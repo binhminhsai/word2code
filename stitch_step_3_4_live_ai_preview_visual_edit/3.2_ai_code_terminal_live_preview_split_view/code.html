@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Alpha - Terminal Preview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,700;1,400&amp;family=Nunito+Sans:wght@300;400;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#ffffff",
+              "inverse-primary": "#8ecf9e",
+              "secondary-fixed-dim": "#d4ccbf",
+              "on-surface": "#2e3230",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#4a4538",
+              "background": "#faf6f0",
+              "surface-container-low": "#f5f1ea",
+              "secondary-fixed": "#f0e8db",
+              "tertiary": "#705c30",
+              "surface-variant": "#e4e0d8",
+              "on-error-container": "#690005",
+              "surface-container-highest": "#e4e0d8",
+              "error-container": "#ffdad8",
+              "on-secondary": "#ffffff",
+              "inverse-on-surface": "#f5f0e8",
+              "primary": "#4a7c59",
+              "on-tertiary-container": "#554020",
+              "error": "#b83230",
+              "tertiary-fixed": "#f8e0a8",
+              "on-secondary-fixed": "#1e1a13",
+              "on-primary-fixed-variant": "#2a6038",
+              "on-surface-variant": "#4a4e4a",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#f0ece4",
+              "on-primary": "#ffffff",
+              "inverse-surface": "#2e3230",
+              "surface": "#faf6f0",
+              "on-background": "#2e3230",
+              "tertiary-fixed-dim": "#dcc48e",
+              "secondary-container": "#f0e8db",
+              "surface-container-high": "#eae6de",
+              "secondary": "#6b6358",
+              "primary-container": "#78a886",
+              "primary-fixed-dim": "#8ecf9e",
+              "primary-fixed": "#c8e8d0",
+              "on-tertiary-fixed": "#221a05",
+              "surface-tint": "#4a7c59",
+              "outline-variant": "#c4c8bc",
+              "on-primary-fixed": "#002110",
+              "outline": "#74796e",
+              "on-tertiary-fixed-variant": "#554020",
+              "on-primary-container": "#d8f0de",
+              "tertiary-container": "#c4a66a",
+              "surface-dim": "#dbd7cf",
+              "surface-bright": "#faf6f0",
+              "on-secondary-container": "#5e5548"
+            },
+            fontFamily: {
+              "headline": ["Literata", "serif"],
+              "body": ["Nunito Sans", "sans-serif"],
+              "label": ["Nunito Sans", "sans-serif"],
+              "mono": ["JetBrains Mono", "monospace"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Nunito Sans', sans-serif; background-color: #faf6f0; }
+        .font-serif { font-family: 'Literata', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c4c8bc; border-radius: 10px; }
+        .terminal-scrollbar::-webkit-scrollbar { width: 6px; }
+        .terminal-scrollbar::-webkit-scrollbar-track { background: #1a1a1a; }
+        .terminal-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background overflow-hidden flex flex-col h-screen">
+<!-- TopNavBar -->
+<header class="bg-[#faf6f0] dark:bg-stone-900 border-b border-stone-200 dark:border-stone-800 shadow-sm dark:shadow-none docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 h-16">
+<!-- Brand Logo -->
+<div class="text-xl font-bold text-[#4a7c59] dark:text-emerald-500 tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+                Project Alpha
+            </div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#4a7c59] dark:text-emerald-400 font-bold border-b-2 border-[#4a7c59] pb-1 text-sm font-sans transition-all active:scale-95 duration-150 ease-in-out" href="#">Preview</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-[#4a7c59] hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors px-3 py-1 text-sm font-sans" href="#">Visual Edit</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-[#4a7c59] hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors px-3 py-1 text-sm font-sans" href="#">Public</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 mr-2">
+<button class="p-2 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+<span class="material-symbols-outlined">sync</span>
+</button>
+<button class="p-2 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+<span class="material-symbols-outlined">sensors</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary px-5 py-2 rounded-lg font-bold text-sm shadow-sm hover:opacity-90 active:scale-95 transition-all">
+                    Deploy
+                </button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCignPAn2cyBcZeDi1J5sSP0UdBh73ldkPPqAMivn6h657khL4IocxsJD5yDs8N8fen6y4QtPQKrbo43CFTCMI7Z1gL2eqvuHNtwX35aWekvCYPLlKm6xt7d5XobNtgvEG1PzFS5muigRlLvIdI1dh9P0YDHkdDmWipkm3QYIpF6izjFS7STVPU8tRPVQKmeGFZlW8rJCg_noe8FwX0XJ8BTV_tLIgHmHiUvihuyb81uMinTTBpUv7eQSYl0Ex6ihQm5EeGpn4F174"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area: Split Screen (50/50) -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Panel: Terminal Console (Half Width) -->
+<section class="w-1/2 flex flex-col bg-[#1a1a1a] border-r border-stone-800 shadow-2xl z-10">
+<!-- Terminal Header -->
+<div class="px-5 py-3 flex items-center justify-between border-b border-stone-800 bg-[#121212]">
+<div class="flex items-center gap-3">
+<div class="flex gap-1.5">
+<span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+<span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+<span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+</div>
+<span class="font-mono text-xs text-stone-500 ml-2">ai-agent@project-alpha: ~/workspace</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-[10px] font-mono text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 uppercase tracking-widest">Connected</span>
+<button class="text-stone-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Terminal Output -->
+<div class="flex-1 overflow-y-auto p-6 font-mono text-[13px] leading-relaxed terminal-scrollbar selection:bg-primary/30">
+<div class="space-y-4">
+<!-- Log 1: System Init -->
+<div class="opacity-70">
+<p class="text-stone-500">Last login: Fri May 24 14:21:44 on ttys001</p>
+<p class="text-emerald-500">$ <span class="text-white">init --env production</span></p>
+</div>
+<!-- Log 2: React Component Highlight -->
+<div class="space-y-1 border-l-2 border-primary/20 pl-4 py-1">
+<div class="flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined text-sm">javascript</span>
+<span>rendering/HeroComponent.jsx</span>
+</div>
+<pre class="bg-[#121212] p-3 rounded-md overflow-x-auto"><code class="text-stone-300"><span class="text-purple-400">export default function</span> <span class="text-blue-400">Hero</span>() {
+  <span class="text-purple-400">return</span> (
+    &lt;<span class="text-red-400">section</span> <span class="text-orange-300">className</span>=<span class="text-emerald-400">"hero-main"</span>&gt;
+      &lt;<span class="text-red-400">h1</span>&gt;{<span class="text-orange-300">content</span>.title}&lt;/<span class="text-red-400">h1</span>&gt;
+      &lt;<span class="text-red-400">Button</span> <span class="text-orange-300">onClick</span>={<span class="text-blue-400">handleAction</span>} /&gt;
+    &lt;/<span class="text-red-400">section</span>&gt;
+  );
+}</code></pre>
+<p class="text-[10px] text-stone-600 italic">Component successfully reconciled with DOM tree.</p>
+</div>
+<!-- Log 3: PHP/API Highlight -->
+<div class="space-y-1 border-l-2 border-blue-500/20 pl-4 py-1">
+<div class="flex items-center gap-2 text-blue-400 font-bold">
+<span class="material-symbols-outlined text-sm">data_object</span>
+<span>api/content_fetcher.php</span>
+</div>
+<pre class="bg-[#121212] p-3 rounded-md overflow-x-auto"><code class="text-stone-300"><span class="text-purple-400">namespace</span> <span class="text-emerald-400">App\Services</span>;
+
+<span class="text-purple-400">class</span> <span class="text-blue-400">ContentProvider</span> {
+    <span class="text-purple-400">public function</span> <span class="text-blue-300">getLatest</span>(<span class="text-orange-300">$slug</span>) {
+        <span class="text-purple-400">return</span> <span class="text-orange-300">$this</span>-&gt;db-&gt;<span class="text-blue-300">find</span>(<span class="text-emerald-400">'terra_posts'</span>, <span class="text-orange-300">$slug</span>);
+    }
+}</code></pre>
+<p class="text-[10px] text-stone-600 italic">Query execution: 12ms. Status: 200 OK</p>
+</div>
+<!-- Active Agent Prompt -->
+<div class="flex gap-3 items-start group">
+<span class="text-primary mt-1">
+<span class="material-symbols-outlined text-base">smart_toy</span>
+</span>
+<div class="space-y-2">
+<p class="text-white font-medium">Agent response:</p>
+<p class="text-stone-400">I have synchronized the <span class="text-emerald-400">Terra Design System</span> variables. The hero section font-size has been updated to 5xl to match the 'Nature-First' aesthetic guidelines. Monitoring for further instructions...</p>
+</div>
+</div>
+<!-- Blinking Cursor -->
+<div class="flex items-center gap-2 pt-4">
+<span class="text-emerald-500">$</span>
+<div class="w-2.5 h-5 bg-emerald-500 animate-pulse"></div>
+</div>
+</div>
+</div>
+<!-- Terminal Chat Input Area -->
+<div class="p-6 bg-[#121212] border-t border-stone-800">
+<div class="relative group">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-stone-500 group-focus-within:text-primary transition-colors">chat_bubble</span>
+<input class="w-full bg-[#1a1a1a] border border-stone-800 rounded-lg py-3 pl-12 pr-4 text-sm font-mono text-white placeholder-stone-600 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all shadow-inner" placeholder="Talk to the AI Agent..." type="text"/>
+</div>
+<div class="mt-3 flex justify-between items-center px-1">
+<p class="text-[10px] text-stone-600 uppercase font-bold tracking-widest">Ready for input</p>
+<div class="flex gap-2">
+<span class="text-[10px] text-stone-600">CMD+K to clear</span>
+<span class="text-[10px] text-stone-600">|</span>
+<span class="text-[10px] text-stone-600">v1.2.4-stable</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Live Preview (Half Width) -->
+<section class="w-1/2 flex flex-col bg-surface relative">
+<!-- Preview Controls -->
+<div class="px-6 py-4 flex items-center justify-between bg-surface-container-high/50 border-b border-outline-variant/30">
+<div class="flex items-center gap-4">
+<h2 class="font-headline text-lg font-bold text-on-surface">Live Preview</h2>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest">React.js</span>
+</div>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-sm font-bold">
+<span class="material-symbols-outlined text-lg">open_in_full</span>
+                    Expand
+                </button>
+</div>
+<!-- The Rendered Website Canvas -->
+<div class="flex-1 overflow-y-auto p-8 custom-scrollbar bg-stone-100/30">
+<div class="max-w-3xl mx-auto bg-background shadow-2xl rounded-xl overflow-hidden border border-outline-variant/20 min-h-screen">
+<!-- Website Hero -->
+<section class="relative h-[400px] flex items-center px-10 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Terra Organic Hero" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuKKzPjFM3AWaHqwX1SZLw2X2DKtK8Y3b4fo4BF3ugT6xk2VWHr7GvvCpxR5miQkYIjDtP1RLleXIFdnAomXcHMGypag72jbkwAQ29OoyaZE8YkgFFHPmlBNJ-hry_DKo7NMD8wmWXl1xEE9B3koThCZDCsMq6yTeuGSFGfmHI1Yo2f1xSPOn4SktW7ENRNdh_0HitpCLR3Wqp01qgLIEhM8oq0x21WTwcXRuUvtuZhc8hB5RJwSusfEIpwwfliEPFHQ5dA093t7o"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-lg space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-bold text-xs uppercase tracking-tighter">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">stars</span>
+                                Locally Sourced
+                            </div>
+<h1 class="font-headline text-4xl lg:text-5xl font-bold leading-tight text-on-surface">
+                                Rooted in <span class="text-primary italic">Nature</span>, Delivered to You.
+                            </h1>
+<p class="font-body text-base text-on-surface-variant leading-relaxed">
+                                Experience the warmth of organic farming with curated seasonal boxes delivered directly from the forest floor to your table.
+                            </p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-bold shadow-md hover:scale-[1.02] transition-transform">Explore Boxes</button>
+<button class="bg-transparent border border-primary text-primary px-8 py-3 rounded-lg font-bold hover:bg-primary/5 transition-colors">Our Story</button>
+</div>
+</div>
+</section>
+<!-- Bento Grid Content -->
+<section class="p-10 bg-surface">
+<div class="grid grid-cols-12 gap-6">
+<!-- Feature 1 -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container p-6 rounded-xl flex flex-col justify-between hover:shadow-lg transition-shadow">
+<div class="space-y-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-fixed">eco</span>
+</div>
+<h3 class="font-headline text-xl font-bold">Sustainably Harvested</h3>
+<p class="font-body text-sm text-on-surface-variant">We partner with independent farmers who prioritize soil health and biodiversity above all else.</p>
+</div>
+<div class="mt-6 flex gap-2 overflow-hidden">
+<img alt="Farm" class="w-1/3 aspect-square object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUMuWmuoSvQnC1lOS3CcTg8Auu5AOddaRy_iSCBXBFSfHNg6c0LioIaewEBkwHQ8yBtS6d_254x793xws5h-V5w-VxJJQk06ggnPBE7fgZ6FcGDAK5f17EfZucau6aNeTiGz34Slj8ivc-4mwbN4EBDfInAWmH5se530Zc2AymVy9NhOnBhidzTixvBeCFbEHjHnLbAMFPbdTdhuE3qFuB8YpvQW40ol3-aVOEDFI5c8Algra5cz8G7eIiBerkMsjYtttoUn8AgxM"/>
+<img alt="Veggies" class="w-1/3 aspect-square object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0bEJZ3nGFITDAq4Ls9KR7ElMrTfoIrabBKgCZexdjNEU60Nyvm2SjcHiqbuitweWrUx8Sq1oAGirUKJLwylNzwvRpDuYuOoBtL2fbsQ35nfj0G8NvbFboz4SLa0CLaOAkiuPaE-1bo4ci1zD5Pz7YFwEKZhVUe94z8VSJEniZTEgfQ5eUfYFFIWy29IjIluJ9HTRqKIEhAAScEfg4WeUwrrnFi6BzGfnI4A6oS1y8Fs-XVF-w5qY0MPVjtlbSoeVHAXyJUwhguGg"/>
+<img alt="Orchard" class="w-1/3 aspect-square object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_tl7oLixmcuddSUDhPZ86-4B2AMPWC479VpqDmwVNigQBtN9KFjjEke9ki_r02u4wJPN42jz80Jiu0L3jLwPry1kAFIZTJCkkRpIkG5er_95memuWQLK77vT9fKTp10bdZ69YysLuMLUgLW7Z7MTo8mTAjmJrdtDAqYwXdLjPd3sLp6ucDUh0dYqTTdzFZFasWRcH9PoAaiCBNcQjCa6AMu2Tj41KJXmNxWf__eTmby0ndOdTm5JI_21qGZGdDF9SDsT0LdgojJM"/>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="col-span-12 lg:col-span-4 bg-tertiary-container p-6 rounded-xl text-on-tertiary-container flex flex-col justify-center text-center space-y-4">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">package_2</span>
+<h3 class="font-headline text-lg font-bold">Weekly Freshness</h3>
+<p class="font-body text-xs">Join 2,000+ neighbors enjoying nature's best.</p>
+<button class="bg-surface text-on-surface px-4 py-2 rounded-full font-bold text-xs hover:bg-surface-container-high transition-colors">Join Subscriptions</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Success Toast Overlay -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-on-surface text-inverse-on-surface px-6 py-4 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] z-50 border border-stone-700">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-xs text-on-primary" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body font-bold text-sm">React Preview Ready!</span>
+<span class="font-body text-xs opacity-70">Hot reloading active and synchronized.</span>
+</div>
+<button class="ml-4 opacity-50 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+</section>
+</main>
+</body></html>

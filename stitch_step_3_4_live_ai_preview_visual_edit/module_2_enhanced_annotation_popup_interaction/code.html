@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>X-press AI | Preview Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,700;1,400&amp;family=Nunito+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "outline": "#74796e",
+                "on-tertiary-fixed": "#221a05",
+                "on-surface": "#2e3230",
+                "on-secondary": "#ffffff",
+                "surface-container-highest": "#e4e0d8",
+                "primary": "#4a7c59",
+                "surface-container-high": "#eae6de",
+                "tertiary-fixed-dim": "#dcc48e",
+                "surface": "#faf6f0",
+                "tertiary": "#705c30",
+                "on-surface-variant": "#4a4e4a",
+                "surface-container-low": "#f5f1ea",
+                "primary-container": "#78a886",
+                "error": "#b83230",
+                "on-background": "#2e3230",
+                "surface-tint": "#4a7c59",
+                "inverse-primary": "#8ecf9e",
+                "on-error": "#ffffff",
+                "on-primary": "#ffffff",
+                "background": "#faf6f0",
+                "on-error-container": "#690005",
+                "error-container": "#ffdad8",
+                "secondary-fixed-dim": "#d4ccbf",
+                "on-primary-fixed-variant": "#2a6038",
+                "on-secondary-container": "#5e5548",
+                "tertiary-container": "#c4a66a",
+                "inverse-surface": "#2e3230",
+                "secondary-fixed": "#f0e8db",
+                "on-tertiary": "#ffffff",
+                "on-primary-container": "#d8f0de",
+                "primary-fixed-dim": "#8ecf9e",
+                "surface-container": "#f0ece4",
+                "secondary-container": "#f0e8db",
+                "surface-dim": "#dbd7cf",
+                "on-secondary-fixed-variant": "#4a4538",
+                "on-secondary-fixed": "#1e1a13",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary-fixed-variant": "#554020",
+                "inverse-on-surface": "#f5f0e8",
+                "primary-fixed": "#c8e8d0",
+                "outline-variant": "#c4c8bc",
+                "on-primary-fixed": "#002110",
+                "surface-bright": "#faf6f0",
+                "on-tertiary-container": "#554020",
+                "surface-variant": "#e4e0d8",
+                "secondary": "#6b6358",
+                "tertiary-fixed": "#f8e0a8"
+              },
+              fontFamily: {
+                "headline": ["Literata"],
+                "body": ["Nunito Sans"],
+                "label": ["Nunito Sans"]
+              },
+              borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .canvas-grid {
+            background-color: #f2ede4;
+            background-image: 
+                radial-gradient(rgba(74, 124, 89, 0.15) 1.5px, transparent 1.5px),
+                linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+            background-size: 32px 32px, 100% 100%;
+        }
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #faf6f0;
+            color: #2e3230;
+        }
+        h1, h2, h3 {
+            font-family: 'Literata', serif;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .popover-arrow {
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container h-screen overflow-hidden flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-[#faf6f0] dark:bg-stone-900 border-b border-stone-200 dark:border-stone-800 shadow-sm dark:shadow-none top-0 z-50 shrink-0">
+<div class="flex justify-between items-center w-full px-6 h-16">
+<!-- Brand Logo -->
+<div class="text-xl font-bold text-[#4a7c59] dark:text-emerald-500 tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+                X-press AI
+            </div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-stone-600 dark:text-stone-400 hover:text-[#4a7c59] hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors px-3 py-1 text-sm font-sans" href="#">Preview</a>
+<a class="text-[#4a7c59] dark:text-emerald-400 font-bold border-b-2 border-[#4a7c59] pb-1 text-sm font-sans transition-all active:scale-95 duration-150 ease-in-out" href="#">Visual Edit</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-[#4a7c59] hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors px-3 py-1 text-sm font-sans" href="#">Public</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 mr-2">
+<button class="p-2 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+<span class="material-symbols-outlined">sync</span>
+</button>
+<button class="p-2 text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+<span class="material-symbols-outlined">sensors</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary px-5 py-2 rounded-lg font-bold text-sm shadow-sm hover:opacity-90 active:scale-95 transition-all">
+                    Deploy
+                </button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHH7P_0usQQk83UK-3KaBW7Wvt1_D9q7endCJzOHnO5JwAFlMUNjxyaTu_SlzcENeReqXTlmQFgrwEE3qKRcd1CXk9j4CfxuWJgBhXbctfHF6bmz-7pPNd1AizARFI1OpZgK9EWWCwYnRKPJoG7XnjyuuZUhMsZBm0NNGJd1Nz0lTytniVUrzXQH1RgU97LbMV6UXLJn0fHLtwZL528bC8Rlwr9CKmFCobTxTd3TklZXCU5LRpRqhOPHniRPWy2Hl7cn1tCsm_uFQ"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden">
+<!-- Main Content Area Wrapper -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- Project Selector Bar -->
+<div class="h-14 border-b border-outline-variant/30 flex items-center justify-between px-8 bg-surface-container-low/50 backdrop-blur-sm shrink-0">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface rounded-full border border-outline-variant/50 cursor-pointer hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-lg">folder_open</span>
+<span class="text-sm font-semibold text-on-surface">wp-theme-organic-v2</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">expand_more</span>
+</div>
+<div class="h-4 w-px bg-outline-variant/50 mx-2"></div>
+<div class="flex items-center gap-2 text-on-surface-variant text-xs font-medium">
+<span class="material-symbols-outlined text-sm">history</span>
+                        Last commit: 2 hours ago
+                    </div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary text-primary text-xs font-bold hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-sm">code</span> VIEW SOURCE
+                    </button>
+</div>
+</div>
+<!-- Workspace + Sidebar -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Main Canvas -->
+<main class="flex-1 relative overflow-auto canvas-grid p-12 flex justify-center items-start">
+<!-- The Theme Preview Wrapper -->
+<div class="relative bg-white shadow-2xl rounded-xl w-full max-w-4xl min-h-[1200px] overflow-hidden border border-outline-variant/30 shrink-0 mb-24">
+<div class="w-full h-full flex flex-col">
+<header class="h-24 bg-surface-container flex items-center justify-between px-12 shrink-0">
+<div class="h-8 w-32 bg-primary/20 rounded-md"></div>
+<div class="flex gap-6">
+<div class="h-2 w-16 bg-on-surface-variant/20 rounded-full"></div>
+<div class="h-2 w-16 bg-on-surface-variant/20 rounded-full"></div>
+<div class="h-2 w-16 bg-on-surface-variant/20 rounded-full"></div>
+</div>
+</header>
+<div class="flex-1 p-12 space-y-16">
+<!-- Hero Section -->
+<div class="flex gap-12">
+<div class="w-1/2 space-y-8">
+<div class="h-12 w-3/4 bg-primary/10 rounded-lg"></div>
+<div class="space-y-4">
+<div class="h-3 w-full bg-on-surface-variant/10 rounded-full"></div>
+<div class="h-3 w-full bg-on-surface-variant/10 rounded-full"></div>
+<div class="h-3 w-2/3 bg-on-surface-variant/10 rounded-full"></div>
+</div>
+<div class="h-14 w-48 bg-tertiary rounded-lg"></div>
+</div>
+<div class="w-1/2 h-80 bg-surface-container-high rounded-xl relative overflow-hidden">
+<img alt="minimalist organic landscape" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB58Gh_RWnmhOq4DZKUynh_dZzj9SnJenvKjXeoeff_69-pEuajJvybySEm8ej9HzoCR1wwaUscC8fmiHF9K40MT324wqE-1J0UY85QkOqpBh6-urtjE0MOUxsG9-_DqJjvbNSAmacX0wHnsfS47QdHUpff0uLwSYM_wHpznSB6iBQ1LIJtfuHzGPqiXH9_M5-Fhf_ajCPJHYJryLGIPogSGX1C7Zokr07f5XoQU7D4k6kWsi5i8zeoeR2MVO0MPc7XTpcPwfmPjkI"/>
+</div>
+</div>
+<!-- Featured Content Area -->
+<div class="grid grid-cols-3 gap-8">
+<div class="space-y-4">
+<div class="h-40 bg-surface-container rounded-xl"></div>
+<div class="h-4 w-3/4 bg-on-surface-variant/10 rounded-full"></div>
+<div class="h-3 w-full bg-on-surface-variant/5 rounded-full"></div>
+</div>
+<div class="space-y-4">
+<div class="h-40 bg-surface-container rounded-xl"></div>
+<div class="h-4 w-3/4 bg-on-surface-variant/10 rounded-full"></div>
+<div class="h-3 w-full bg-on-surface-variant/5 rounded-full"></div>
+</div>
+<div class="space-y-4">
+<div class="h-40 bg-surface-container rounded-xl"></div>
+<div class="h-4 w-3/4 bg-on-surface-variant/10 rounded-full"></div>
+<div class="h-3 w-full bg-on-surface-variant/5 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Annotation Overlay -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- Annotation 1 -->
+<div class="absolute top-4 left-1/2 -translate-x-1/2 w-3/4 h-12 border-2 border-dashed border-primary/60 rounded-lg pointer-events-auto group cursor-help">
+<div class="absolute -top-3 -right-3 w-6 h-6 bg-primary text-on-primary rounded-full flex items-center justify-center text-xs font-bold shadow-lg">1</div>
+</div>
+<!-- Annotation 2 with Visible Popup -->
+<div class="absolute top-32 right-12 w-[45%] h-[20rem] border-2 border-dashed border-tertiary/60 rounded-xl pointer-events-auto">
+<div class="absolute -bottom-3 -left-3 w-6 h-6 bg-tertiary text-on-tertiary rounded-full flex items-center justify-center text-xs font-bold shadow-lg z-10">2</div>
+<!-- Visible Floating Annotation Popup #2 -->
+<div class="absolute -left-12 bottom-8 w-72 bg-surface rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-outline-variant/30 p-4 flex flex-col gap-3 animate-in fade-in slide-in-from-bottom-2 duration-300">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold text-on-secondary-container">SC</div>
+<span class="text-xs font-bold text-on-surface">Sarah Chen</span>
+</div>
+<span class="text-[9px] text-on-surface-variant font-bold uppercase tracking-wider">1H AGO</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Replace this static image with a smooth cross-fade slider showing landscape variations.</p>
+<div class="flex items-center gap-3 pt-1">
+<button class="text-[10px] font-bold text-primary hover:underline uppercase tracking-tight">Reply</button>
+<button class="text-[10px] font-bold text-on-surface-variant hover:text-error transition-colors uppercase tracking-tight">Resolve</button>
+</div>
+<!-- Arrow connecting to marker -->
+<div class="absolute -bottom-2 left-10 w-4 h-2 bg-surface popover-arrow border-x border-b border-outline-variant/10"></div>
+</div>
+</div>
+<!-- Annotation 3 -->
+<div class="absolute top-[22rem] left-24 w-40 h-16 border-2 border-dashed border-primary/60 rounded-full pointer-events-auto group cursor-help">
+<div class="absolute -top-3 -left-3 w-6 h-6 bg-primary text-on-primary rounded-full flex items-center justify-center text-xs font-bold shadow-lg">3</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Annotations Sidebar -->
+<aside class="w-80 bg-surface border-l border-outline-variant/30 flex flex-col shrink-0">
+<div class="h-14 flex items-center px-6 border-b border-outline-variant/30 justify-between">
+<h3 class="font-['Literata'] font-bold text-sm text-on-surface">Annotations</h3>
+<span class="bg-primary/10 text-primary text-[10px] font-extrabold px-2 py-0.5 rounded-full">3 ACTIVE</span>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar">
+<!-- Comment Card 1 -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-3 mb-3">
+<div class="w-6 h-6 bg-primary text-on-primary rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 shadow-sm">1</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-on-surface truncate">Alex Rivera</span>
+<span class="text-[9px] text-on-surface-variant uppercase tracking-tighter">2h ago</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Make this header sticky with a glassmorphism effect on scroll.</p>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-9">
+<img alt="User" class="w-5 h-5 rounded-full border border-surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHH7P_0usQQk83UK-3KaBW7Wvt1_D9q7endCJzOHnO5JwAFlMUNjxyaTu_SlzcENeReqXTlmQFgrwEE3qKRcd1CXk9j4CfxuWJgBhXbctfHF6bmz-7pPNd1AizARFI1OpZgK9EWWCwYnRKPJoG7XnjyuuZUhMsZBm0NNGJd1Nz0lTytniVUrzXQH1RgU97LbMV6UXLJn0fHFtwZL528bC8Rlwr9CKmFCobTxTd3TklZXCU5LRpRqhOPHniRPWy2Hl7cn1tCsm_uFQ"/>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<button class="text-[10px] font-bold text-primary hover:underline">Reply</button>
+<button class="text-[10px] font-bold text-on-surface-variant hover:text-error transition-colors">Resolve</button>
+</div>
+</div>
+<!-- Comment Card 2 -->
+<div class="bg-surface-container rounded-xl p-4 border border-primary/30 shadow-md ring-1 ring-primary/10">
+<div class="flex items-start gap-3 mb-3">
+<div class="w-6 h-6 bg-tertiary text-on-tertiary rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 shadow-sm">2</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-on-surface truncate">Sarah Chen</span>
+<span class="text-[9px] text-on-surface-variant uppercase tracking-tighter">1h ago</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed font-medium">Replace this static image with a smooth cross-fade slider showing landscape variations.</p>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-9">
+<div class="w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center text-[9px] font-bold text-on-secondary-container">SC</div>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<button class="text-[10px] font-bold text-primary hover:underline">Reply</button>
+<button class="text-[10px] font-bold text-on-surface-variant hover:text-error transition-colors">Resolve</button>
+</div>
+</div>
+<!-- Comment Card 3 -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-3 mb-3">
+<div class="w-6 h-6 bg-primary text-on-primary rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 shadow-sm">3</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-on-surface truncate">Alex Rivera</span>
+<span class="text-[9px] text-on-surface-variant uppercase tracking-tighter">45m ago</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Adjust font-weight to 800 for better hierarchy against the background.</p>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-9">
+<img alt="User" class="w-5 h-5 rounded-full border border-surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHH7P_0usQQk83UK-3KaBW7Wvt1_D9q7endCJzOHnO5JwAFlMUNjxyaTu_SlzcENeReqXTlmQFgrwEE3qKRcd1CXk9j4CfxuWJgBhXbctfHF6bmz-7pPNd1AizARFI1OpZgK9EWWCwYnRKPJoG7XnjyuuZUhMsZBm0NNGJd1Nz0lTytniVUrzXQH1RgU97LbMV6UXLJn0fHLtwZL528bC8Rlwr9CKmFCobTxTd3TklZXCU5LRpRqhOPHniRPWy2Hl7cn1tCsm_uFQ"/>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<button class="text-[10px] font-bold text-primary hover:underline">Reply</button>
+<button class="text-[10px] font-bold text-on-surface-variant hover:text-error transition-colors">Resolve</button>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-outline-variant/30">
+<button class="w-full py-2 bg-primary/10 text-primary rounded-lg text-xs font-bold hover:bg-primary/20 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span> Export Annotations
+                        </button>
+</div>
+</aside>
+</div>
+<!-- Bottom Chat Bar -->
+<div class="bg-surface shrink-0 p-6 flex justify-center z-50">
+<div class="w-full max-w-4xl bg-surface-container-lowest shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.15)] rounded-2xl border border-outline-variant/30 overflow-hidden flex flex-col">
+<div class="p-4 bg-surface-container-low border-t">
+<div class="relative flex items-center gap-3">
+<div class="flex-1 relative">
+<input class="w-full bg-surface-container-lowest border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-3 px-12 text-sm placeholder:text-stone-400" placeholder="Hỏi AI bất cứ điều gì về theme này..." type="text"/>
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-primary">auto_awesome</span>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-1 bg-surface-container-high px-2 py-1 rounded-lg border border-outline-variant/30">
+<button class="text-[10px] font-bold text-on-surface-variant hover:text-primary transition-colors">EN</button>
+<span class="h-2 w-px bg-outline-variant"></span>
+<button class="text-[10px] font-bold text-primary">VN</button>
+</div>
+</div>
+<button class="w-10 h-10 bg-primary text-on-primary rounded-xl flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<div class="mt-3 flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+<button class="whitespace-nowrap px-3 py-1 bg-surface-container-lowest border border-outline-variant/30 rounded-full text-[11px] font-bold text-on-surface-variant hover:bg-primary/5 hover:border-primary transition-all">✨ Refactor Component</button>
+<button class="whitespace-nowrap px-3 py-1 bg-surface-container-lowest border border-outline-variant/30 rounded-full text-[11px] font-bold text-on-surface-variant hover:bg-primary/5 hover:border-primary transition-all">🎨 Change Primary Color</button>
+<button class="whitespace-nowrap px-3 py-1 bg-surface-container-lowest border border-outline-variant/30 rounded-full text-[11px] font-bold text-on-surface-variant hover:bg-primary/5 hover:border-primary transition-all">📝 Fix Annotations</button>
+<button class="whitespace-nowrap px-3 py-1 bg-surface-container-lowest border border-outline-variant/30 rounded-full text-[11px] font-bold text-on-surface-variant hover:bg-primary/5 hover:border-primary transition-all">⚡ Performance Audit</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>
