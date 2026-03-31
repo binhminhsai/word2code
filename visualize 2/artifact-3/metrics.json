@@ -1,0 +1,23 @@
+{
+    "success": true,
+    "result": {
+        "urlA": "http://localhost:8000/",
+        "urlB": "http://localhost:5173",
+        "diffPercentage": 31.422, 
+        "differentPixels": 2104014,
+        "totalPixels": 6696000,
+        "resolutionUsed": {
+            "width": 1440,
+            "height": 4650
+        },
+        "navigationModes": {
+            "urlA": "networkidle",
+            "urlB": "networkidle"
+        },
+        "artifacts": {
+            "imageA": "D:\\casso\\vibepress\\automation\\artifacts\\1774489698530-localhost-8000.png",
+            "imageB": "D:\\casso\\vibepress\\automation\\artifacts\\1774489698530-localhost-5173.png",
+            "diff": "D:\\casso\\vibepress\\automation\\artifacts\\1774489698530-diff.png"
+        }
+    }
+}
