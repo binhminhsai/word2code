@@ -94,6 +94,7 @@ User                     X-press (AI)
  ├─ Export / Deploy ─────────►│
  │                            ├─ Build Output
  │                            ├─ Deploy App
+ |                            ├─ Sync Wordpress
  │◄──────── Live App / URL ───┤
  │
  ▼
