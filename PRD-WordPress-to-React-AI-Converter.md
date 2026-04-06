@@ -94,7 +94,6 @@ User                     X-press (AI)
  ├─ Export / Deploy ─────────►│
  │                            ├─ Build Output
  │                            ├─ Deploy App
- |                            ├─ Sync Wordpress
  │◄──────── Live App / URL ───┤
  │
  ▼
@@ -360,10 +359,12 @@ User update code tại Component X-press Chat
 **Thời gian**: Week 6 (04/04 – 10/04/2026)  
 **Mục tiêu**: Toàn bộ nội dung WP được migrate, AI gen đủ pages, routing đúng, CI/CD lên server
 
-| Task | Owner | Deadline | Mô tả |
-|------|-------|---------|-------|
-| Testing Performance của Agentic AI worfklow WP -> Next.js | VINH | 07/04 | Đúng routing, page, UI, đủ ảnh, blog, comment, product |
-| Testing Blog post + comment in Next.js code | LE ANH | 07/04 | Dynamic content render in database and sync to Wordpress |
+| Task | Owner | Deadline | Mô tả | Status |
+|------|-------|---------|-------|-------|
+| Case: Automation CI/CD Git to server | VINH | 03/04 | OAuth + clone flow | Delay |
+| Case: AI Revise Frontend by chat | LE ANH | 03/04 |  Chat edit loop | Delay |
+| Testing Performance của Agentic AI worfklow WP -> Code | VINH | 07/04 | Đúng routing, page, UI, đủ ảnh, blog, comment, product |
+| Testing Blog post + comment + product in React code | LE ANH | 07/04 | Dynamic content render in database and sync to Wordpress |
 | AI Revise Frontend by chat (UI only) | LE ANH | 08/04 | Chỉ sửa mỗi UI, UX tạo table để sau|
 | Performance metrics dashboard | VINH | 08/04 | So sánh Lighthouse WP vs React, Rest API performance |
 | Checkpoint 3 - MVP X-press | LE ANH + VINH | 08/04 | Demo full luồng từ WP -> Next.js -> AI refine by chart |
