@@ -94,6 +94,7 @@ User                     X-press (AI)
  ├─ Export / Deploy ─────────►│
  │                            ├─ Build Output
  │                            ├─ Deploy App
+ |                            ├─ Sync Wordpress
  │◄──────── Live App / URL ───┤
  │
  ▼
@@ -341,13 +342,13 @@ User update code tại Component X-press Chat
 
 | Task | Owner | Deadline | Mô tả | Status |
 |------|-------|---------|-------|-------|
-| Build tool evaluate performance dong va tinh | VINH | 31/03 | Nevigation & API query WP DB to compare | In progress |
-| AI Open source gen được React and Nodejs | LE ANH | 31/03 | Reseach and run thu opensource tren Mac mini | In progress |
-| Complete Tool Sync WP ≍ Git| VINH | 02/04| Testing 2 case | Not Started |
-| Test pipeline AI migrate full WP Page (Frontend/Rest API) | LE ANH | 02/04 | Nevigation/Blog/Comment/Store (WooCommerce)| Not Started |
-| Enhance prototype through requirement cua anh Diep | Minh | 02/04| Research (31.03) -> Redesign (02.04) | Not Started |
-| Push React code to Github 2 | VINH | 03/04 | Auto-commit sau khi gen xong | Not Started |
-| Live preview chạy được trong x-press with open source model | LE ANH | 03/04 | iframe preview internal | Not Started |
+| Build tool evaluate performance dong va tinh | VINH | 31/03 | Nevigation & API query WP DB to compare | Completed |
+| AI Open source gen được React and Nodejs | LE ANH | 31/03 | Reseach and run thu opensource tren Mac mini | Completed |
+| Complete Tool Sync WP ≍ Git| VINH | 02/04| Testing 2 case | Delay |
+| Test pipeline AI migrate full WP Page (Frontend/Rest API) | LE ANH | 02/04 | Nevigation/Blog/Comment/Store (WooCommerce)| Completed |
+| Enhance prototype through requirement cua anh Diep | Minh | 02/04| Research (31.03) -> Redesign (02.04) | Delay |
+| Push React code to Github 2 | VINH | 03/04 | Auto-commit sau khi gen xong | Completed |
+| Live preview chạy được trong x-press with open source model | LE ANH + Vinh | 03/04 | iframe preview internal | Not Started |
 | Case: Automation CI/CD Git to server | VINH | 03/04 | OAuth + clone flow | Delay |
 | Case: AI Revise Frontend by chat | LE ANH | 03/04 | Chat edit loop | Delay |
 
