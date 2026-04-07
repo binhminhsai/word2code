@@ -361,8 +361,8 @@ User update code tại Component X-press Chat
 
 | Task | Owner | Deadline | Mô tả | Status |
 |------|-------|---------|-------|-------|
-| Case: Automation CI/CD Git to server | VINH | 07/04 | Hoàn thành full pipeline lượt đi từ Wordpress to server + OAuth + clone flow | Delay |
-| Testing Performance của Agentic AI worfklow WP -> Code | LA + VINH | 07/04 | Chạy thử và tối ưu hiệu suất toàn bộ pipeline AI Migrate code + Đúng routing, page, UI, đủ ảnh, blog, comment, product |
+| Case: Automation CI/CD Git to server | VINH | 07/04 | Hoàn thành full pipeline lượt đi từ Wordpress to server + OAuth + clone flow |
+| Testing Performance của Agentic AI worfklow WP -> Code | LA + VINH | 07/04 | Host Wordpress lên server -> Chạy thử và tối ưu hiệu suất toàn bộ pipeline AI Migrate code -> Đúng routing, page, UI, đủ ảnh, blog, comment, product |
 | AI Revise Frontend by chat (UI only) | LE ANH | 09/04 | Chỉ sửa mỗi UI, UX tạo table để sau|
 | Checkpoint 3 - MVP X-press | LE ANH + VINH | 09/04 | Hoàn thành full pipeline lượt đi từ Wordpress to server + AI revise frontend by chat Demo full luồng từ WP -> Next.js -> AI refine by chart |
 | Chốt MVP demo script + tiêu chí pass/fail | MINH | 09/04 | Demo 10–15 phút + acceptance criteria cho từng bước để tránh scope creep|
